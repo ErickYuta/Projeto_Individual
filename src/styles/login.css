@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Barlow', sans-serif;
+    background-image: url(../assets/background_Login.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+.login{
+    height:100vh;   
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container .card-login {
+    background-color: rgba(222, 184, 135, 0.549);
+    width: 60%;
+    height: 80vh;
+    border-radius: 15px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+.formulario{
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.formulario h1{
+    font-size: 64px;
+}
+.formulario a{
+    color: #fff;
+}
+.formulario .campo{
+    display: flex;
+    width: 60%;
+    flex-direction: column;
+    text-align: left;
+}
+.formulario button{
+    padding: 15px;
+    width: 25%;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin-top: 10px;
+}
+.campo span{
+    color: black;
+    font-size: 16px;
+}
+.campo input{
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%;
+}

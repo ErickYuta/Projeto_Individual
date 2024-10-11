@@ -1,0 +1,120 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat';
+    background-image: url(../assets/sistema.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+/* Seção Header */
+.header {
+    height: 80px;
+    background-color: #04143dfe;
+}
+
+.container {
+    display: flex;
+    width: 85%;
+    margin: auto;
+    background-color: #04143dfe;
+}
+
+.header .container {
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+.header h1{
+    display: flex;
+    color: #fff;
+    font-weight: bold;
+    flex-direction: column;
+}
+
+.header a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 20px;
+}
+
+.navbar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+    color: #fff;
+}
+.login {
+    border: 1px solid #fff;
+    padding: 10px;
+    color: #fff;
+    width: 120px;
+    border-radius: 10px;
+    font-size: 16px;
+    background-color:transparent;
+    font-weight: bold;
+}
+.login:hover{
+    transition: 0.5s;
+    background-color: #cbc8c8;
+}
+.cadastro {
+    margin-left: 20px;
+    font-weight: bold;
+    border-radius: 10px;
+    background-color: #7578d6;
+    width: 280px;
+    border: none;
+    padding: 10px;
+}
+.cadastro:hover{
+    background-color: #6d71f4;
+}
+/* Conteudo Principal */
+.banner {
+    width: 100%;
+    background-color: #2b2c37b0;
+    height: 100vh;
+    text-align: left;
+}
+.banner .container{
+    width: 80%;
+    height: 70%;
+    background-color: transparent;
+}
+ .section-main{
+    align-items: self-start;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 70%;
+}
+.section-main h1 {
+    display: flex;
+    flex-direction: column;
+    font-size: 64px;
+    color: #fff;
+} 
+.linha{
+    justify-content: start;
+    width: 30%;
+}
+.linha .separador{
+    border: 2px solid white;
+    border-radius: 10px;
+}
+.banner .section-main p {
+    width: 80%;
+    margin: 0;
+    padding: 0;
+    font-size: 26px;
+    color: #ffffff;
+}
+/* Seção Sobre */
+.about{
+    height: 700px;
+    background-color: #fff;
+}
