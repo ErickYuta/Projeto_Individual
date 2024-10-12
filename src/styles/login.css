@@ -4,7 +4,7 @@ body{
     margin: 0;
     padding: 0;
     font-family: 'Barlow', sans-serif;
-    background-image: url(../assets/background_Login.jpg);
+    background-image: url(../assets/planet.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -17,12 +17,16 @@ body{
     align-items: center;
 }
 .container .card-login {
-    background-color: rgba(222, 184, 135, 0.549);
-    width: 60%;
-    height: 80vh;
-    border-radius: 15px;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(100px);  /* Diferencial*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1); /* Diferencial*/
+    width: 40%;
+    height: 60vh;
+    border-radius: 10px;
     align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 .container{
@@ -37,32 +41,45 @@ body{
     align-items: center;
     flex-direction: column;
 }
-.formulario h1{
-    font-size: 64px;
+.card-login h1{
+    font-size: 32px;
 }
 .formulario a{
     color: #fff;
 }
 .formulario .campo{
     display: flex;
-    width: 60%;
+    width: 100%;
     flex-direction: column;
     text-align: left;
 }
-.formulario button{
+.formulario .botao{
     padding: 15px;
-    width: 25%;
-    border-radius: 10px;
+    width: 80%;
+    margin: 10px;
+    border-radius: 30px;
     border: 1px solid black;
     margin-top: 10px;
 }
-.campo span{
+.botao a{
+    text-decoration: none;
     color: black;
+    font-weight: bold;
+    margin: 10px;
     font-size: 16px;
 }
+.campo span{
+    color: #fff;
+    font-size: 16px;
+    margin-left: 10px;
+}
 .campo input{
-    border: none;
+    border: 2px solid #fff;
     padding: 10px;
+    margin: 10px;
+    color: #fff;
+    background: transparent;
+    outline: none;
     border-radius: 5px;
-    width: 100%;
+    width: 20vw;
 }

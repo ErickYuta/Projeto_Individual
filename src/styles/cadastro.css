@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Barlow', sans-serif;
+    background-image: url(../assets/rocket.png);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+.container {
+    display: flex;
+    height: 100vh;
+    justify-content: end;
+}
+
+.right {
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, .2);
+    backdrop-filter: blur(20px);  /* Diferencial*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+.right h1{
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+}
+.formulario {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+.campo span{
+    color: #fff;
+    font-size: 16px;
+}
+.campo input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.conta{
+    text-align: center;
+    align-items: center;
+}   
+.conta button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    margin: 10px;
+}
+.conta button:hover {
+    background-color: #45a049;
+}
+.conta a{
+    color: #fff;
+}
+

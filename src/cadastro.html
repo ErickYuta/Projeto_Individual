@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/login.css">
-    <title>Cadastro</title>
+    <link rel="stylesheet" href="./styles/cadastro.css">
+    <title>Página de Cadastrp</title>
 </head>
 <body>
-    <div class="login">
-        <div class="container">
-            <div class="card card-login">
-                <div class="formulario">
-                    <h1>Crie sua Conta</h1>
-                    <div class="campo">
-                        <span>Nome:</span>
-                        <input id="ipt_nome" type="password" placeholder="Carlos">
-                    </div>
-                    <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="ipt_email" type="text" placeholder="example@hotmail.com">
-                    </div>
-                    <div class="campo">
-                        <span>Telefone:</span>
-                        <input id="ipt_telefone" type="password" placeholder="(12) 34567-8910">
-                    </div>
-                    <div class="campo">
-                        <span>Senha:</span>
-                        <input id="ipt_senha" type="password" placeholder="******">
-                    </div>
-                    <div class="campo">
-                        <span>Confirmar Senha:</span>
-                        <input id="ipt_confirmarSenha" type="password" placeholder="******">
-                    </div>
-                    <button class="botao">Cadastrar</button>
-                    <a href="login.html">Fazer Login</a>
+<div class="container">
+        <div class="right">
+            <h1>Crie sua conta!</h1>
+            <div class="formulario">
+                <div class="campo">
+                    <span>Nome:</span>
+                    <input type="text" id="ipt_nome" placeholder="Nome Completo">
+                </div>
+                <div class="campo">
+                    <span>Email:</span>
+                    <input type="text" id="ipt_email" placeholder="example@hotmail.com">
+                </div>
+                <div class="campo">
+                    <span>Telefone:</span>
+                    <input type="text" id="ipt_telefone" placeholder="(12) 34567-8910">
+                </div>
+                <div class="campo">
+                    <span>Senha:</span>
+                    <input type="password" id="ipt_senha" placeholder="*********">
+                </div>
+                <div class="campo">
+                    <span>Confirmar Senha:</span>
+                    <input type="password" id="ipt_confirmarSenha" placeholder="*********">
+                </div>
+                <div class="conta">
+                    <button onclick="cadastrar()">Cadastrar-se</button>
+                    <a href="login.html">Já possuí conta?</a>
                 </div>
             </div>
         </div>
+    </div>
 </body>
 </html>
