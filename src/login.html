@@ -22,7 +22,7 @@
                         <input id="ipt_senha" type="password" placeholder="******">
                     </div>
                     <a href="esqueceu_senha.html">Esqueceu a senha?</a>
-                    <button class="botao"><a href="dashboard.html">Login</a></button>
+                    <button class="botao" onclick="entrar()"><a href="dashboard.html">Login</a></button>
                     <a href="cadastro.html">Criar conta</a>
                 </div>
             </div>
@@ -30,3 +30,34 @@
     </div>
 </body>
 </html>
+<script>
+    function entrar(){
+        var email = ipt_email.value;
+        var senha = ipt_senha.value;
+
+        var includesArroba = email.includes('@');
+        var termina_com = email.endsWith('.com');
+
+        if(includesArroba && termina_com){
+            alert('Email válido')
+        } else {
+            alert('Email inválido')
+            return;
+        }
+
+        var tamanho_senha = senha.length;
+        var caracteres_especiais = senha.includes('@','!','#','%','&','°');
+        var contem_numeros = senha.includes(1,2,3,4,5,6,7,8,9,0);
+
+        if(tamanho_senha < 8){
+            alert('Sua senha não possui 8 caracteres');
+        } else{
+            alert('Sua senha possui 8 caracteres');
+            return;
+        } 
+        
+        if(tamanho_senha >= 8 && caracteres_especiais && contem_numeros){
+            alert('Sua senha possui 8 caracteres, possui ao menos 1 caractere especial e contem numeros');
+        }
+    }
+</script>
