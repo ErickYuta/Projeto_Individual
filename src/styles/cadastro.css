@@ -5,7 +5,7 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: 'Barlow', sans-serif;
-    background-image: url(../assets/rocket.png);
+    background-image: url(../assets/img/rocket.png);
     background-repeat: no-repeat;
     background-size: 100% 100%;
 }
@@ -64,7 +64,12 @@ body {
 .conta button:hover {
     background-color: #45a049;
 }
+.conta button a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+}
 .conta a{
+    text-decoration: underline;
     color: #fff;
 }
-

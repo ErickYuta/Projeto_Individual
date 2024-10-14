@@ -4,7 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat';
-    background-image: url(../assets/sistema.png);
+    background-image: url(../assets/img/backgroundInicial2.jpg);
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -31,13 +31,19 @@ body {
     font-weight: bold;
     flex-direction: column;
 }
-
+.header img{
+    width: 60px;
+    margin-right: 10px;
+}
 .header a {
     text-decoration: none;
     color: #fff;
     font-size: 20px;
 }
-
+.header a:hover{
+    text-decoration: underline;
+    color: black;
+}
 .navbar {
     width: 100%;
     display: flex;
@@ -59,6 +65,10 @@ body {
 .login:hover{
     transition: 0.5s;
     background-color: #cbc8c8;
+}
+.login a:hover{
+    text-decoration: none;
+    color: black;
 }
 .cadastro {
     margin-left: 20px;
