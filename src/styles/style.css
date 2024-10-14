@@ -11,14 +11,13 @@ body {
 /* Seção Header */
 .header {
     height: 80px;
-    background-color: #04143dfe;
+    background-color: #2b4c7e;
 }
 
 .container {
     display: flex;
     width: 85%;
     margin: auto;
-    background-color: #04143dfe;
 }
 
 .header .container {
@@ -92,11 +91,21 @@ body {
     flex-direction: column;
     width: 70%;
 }
+.section-main button{
+    width: 20%;
+    height: 7%;
+    border: none;
+    margin-top: 10px;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #f84339;
+    color: #fff;
+}
 .section-main h1 {
     display: flex;
     flex-direction: column;
     font-size: 64px;
-    color: #fff;
+    color: #dce0e6;
 } 
 .linha{
     justify-content: start;
@@ -117,4 +126,10 @@ body {
 .about{
     height: 700px;
     background-color: #fff;
+}
+
+.footer{
+    background-color: red;
+    height: 100%;
+    width: 100%;
 }

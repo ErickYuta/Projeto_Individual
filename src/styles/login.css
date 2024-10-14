@@ -20,7 +20,6 @@ body{
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(100px);  /* Diferencial*/
-    box-shadow: 0 0 10px rgba(0, 0, 0, .1); /* Diferencial*/
     width: 40%;
     height: 60vh;
     border-radius: 10px;
@@ -41,7 +40,13 @@ body{
     align-items: center;
     flex-direction: column;
 }
+.texto-esqueceu {
+    width: 75%;
+    text-align: center;
+    margin: 10px;
+}
 .card-login h1{
+    text-align: left;
     font-size: 32px;
 }
 .formulario a{
