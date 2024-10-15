@@ -10,6 +10,7 @@
 <body>
     <div class="login">
         <div class="container">
+            <div id="div_mensagem"></div>
             <div class="card card-login">
                 <h1>Faça seu Login!</h1>
                 <div class="formulario">
@@ -22,7 +23,7 @@
                         <input id="ipt_senha" type="password" placeholder="******">
                     </div>
                     <a href="esqueceu_senha.html">Esqueceu a senha?</a>
-                    <button class="botao" onclick="entrar()"><a href="../dashboard.html">Login</a></button>
+                    <button class="botao" onclick="entrar()">LOGIN</a></button>
                     <a href="cadastro.html">Criar conta</a>
                 </div>
             </div>
@@ -34,30 +35,32 @@
     function entrar(){
         var email = ipt_email.value;
         var senha = ipt_senha.value;
+        
+        if(email == 'admin@hotmail.com' && senha == 'admin'){
+            alert('Email e Senha válido')
+            window.location.href = 'dashboard.html';
+        }
 
         var includesArroba = email.includes('@');
         var termina_com = email.endsWith('.com');
 
         if(includesArroba && termina_com){
-            alert('Email válido')
+            mensagem += 'Email válido'
         } else {
-            alert('Email inválido')
-            return;
+            mensagem += 'Email inválido'
         }
-
+        var mensagem = '';
         var tamanho_senha = senha.length;
         var caracteres_especiais = senha.includes('@','!','#','%','&','°');
         var contem_numeros = senha.includes(1,2,3,4,5,6,7,8,9,0);
-
-        if(tamanho_senha < 8){
-            alert('Sua senha não possui 8 caracteres');
-        } else{
-            alert('Sua senha possui 8 caracteres');
-            return;
-        } 
         
-        if(tamanho_senha >= 8 && caracteres_especiais && contem_numeros){
-            alert('Sua senha possui 8 caracteres, possui ao menos 1 caractere especial e contem numeros');
+        if(tamanho_senha < 8){
+            mensagem += 'Sua senha não possui 8 caracteres <br>'
+        } 
+        if(!caracteres_especiais || !contem_numeros){
+            mensagem += 'Não contém caractere especial ou números!'
         }
+
+        div_mensagem.innerHTML = mensagem;
     }
 </script>

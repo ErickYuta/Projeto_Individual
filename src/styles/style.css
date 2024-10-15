@@ -74,6 +74,10 @@ body {
     border: none;
     cursor: pointer;
 }
+.dropButton a:hover {
+    text-decoration: underline;
+    color: #fff;
+}
 
 .dropdown {
     position: relative;
