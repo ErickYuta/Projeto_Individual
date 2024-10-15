@@ -14,13 +14,20 @@
             <h1>Astronomia</h1>
             <ul class="navbar">
             <li class="agora">
-              <a href="#">Início</a>
+              <a href="index.html">Início</a>
             </li>
             <li>
               <a href="#simulador">Simulação</a>
             </li>
             <li>
-              <a href="#tipos">Tipos</a>
+              <div class="dropdown">
+                <button class="dropButton">Explorar</button>
+                <div class="content">
+                  <a href="explorar.html">Planetas</a>
+                  <a href="explorar.html">Galáxias</a>
+                  <a href="explorar.html">Universo</a>
+                </div>
+              </div>
             </li>
             <li>
               <a href="#">Contato</a>
@@ -29,7 +36,7 @@
               <a href="#about">Sobre</a>
             </li>
           </ul>
-          <button class="login"><a href="login.html">LOGIN</a></button>
+          <button class="login"><a href="./account/login.html">LOGIN</a></button>
         </div>
       </div>
 
@@ -47,9 +54,14 @@
       </div>
 
       <div class="about" id="about">
-        <span>Astronomia</span>
-        <p></p>
-        <img src="" alt="">
+        <span>Sobre</span>
+        <div class="section-about">
+          <p>Astronomia é a ciência que estuda os corpos celestes e o Universo, ou seja, os 
+            planetas, estrelas, cometas, asteroides, nebulosas, galáxias, entre outros.
+            Conceitos e teorias importantes, como a do Big Bang (sobre a criação do Universo) e da Teoria Nebular (criação do Sistema Solar), foram construídas dessa forma.
+            A Astronomia é uma das ciências mais antigas, pois a prática de observar o céu tem milhares de anos. Foi a partir da observação de fenômenos celestes que o homem conseguiu organizar a passagem do tempo e prever eventos naturais.</p>
+          <img src="./assets/img/content.png" alt="">
+        </div>
       </div>
       <div class="topicos" id="tipos">
       </div>

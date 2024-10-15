@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./styles/cadastro.css">
+    <link rel="stylesheet" href="../styles/cadastro.css">
     <link rel="shortcut icon" href="./assets/icons/logoAstronomia.png" type="image/x-icon">
     <title>Página de Cadastro</title>
 </head>
@@ -41,3 +41,28 @@
     </div>
 </body>
 </html>
+<script>
+    function cadastrar(){
+        var nome = ipt_nome.value;
+        var email = ipt_email.value;
+        var telefone = ipt_telefone.value;
+        var senha = ipt_senha.value;
+        var confirmarSenha = ipt_confirmarSenha.value;
+
+        var email_arroba = email.includes('@');
+        var termina_com = email.endsWith('.com');
+
+        if(email_arroba && termina_com){
+            alert('Email Válido');
+        } else {
+            alert('Email Inválido');
+        }
+
+        if(senha != confirmarSenha){
+            alert('A Senha é diferente');
+        } else {
+            alert('A Senha é igual a outra');
+        }
+
+    }
+</script>
