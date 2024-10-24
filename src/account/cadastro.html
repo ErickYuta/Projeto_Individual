@@ -13,8 +13,8 @@
             <h1>Crie sua conta!</h1>
             <div class="formulario">
                 <div class="campo">
-                    <span>Nome:</span>
-                    <input type="text" id="ipt_nome" placeholder="Nome Completo">
+                    <span>Login:</span>
+                    <input type="text" id="ipt_login" placeholder="Apelido">
                 </div>
                 <div class="campo">
                     <span>Email:</span>
@@ -43,19 +43,71 @@
 </html>
 <script>
     function cadastrar(){
-        var nome = ipt_nome.value;
+        var login = ipt_login.value;
         var email = ipt_email.value;
         var telefone = ipt_telefone.value;
         var senha = ipt_senha.value;
         var confirmarSenha = ipt_confirmarSenha.value;
 
-        var email_arroba = email.includes('@');
-        var termina_com = email.endsWith('.com');
+        var emailVálido = true;
+        var senhaVálida = true;
 
-        if(email_arroba && termina_com){
-            alert('Email Válido');
+        var senhaSuficiente = false;
+        var senhaComNumero = false;
+        var senhaComCaractereEspecial = false;
+        var senhaComMinusculo = false;
+        var senhaComMaiusculo = false;
+        
+        if (email.includes('.') && email.includes('@')) {
+            if (!(email.indexOf('.') == (email.indexOf('@') + 1))) {
+                loginVálido = true;
+            }
+        }
+
+        if (senha.toUpperCase() == senha && senha.toLowerCase() == senha) {
+            senhaVálida = false;
         } else {
-            alert('Email Inválido');
+
+            if (senha.toLowerCase() == senha) {
+                senhaVálida = false;
+            } else {
+                senhaVálida = true;
+            }
+
+            if (senha.toUpperCase() == senha) {
+                senhaVálida = false;
+            } else {
+                senhaVálida = true;
+            }
+        }
+
+        if (tamanho_senha < 8) {
+            senhaVálida = false;
+        } else {
+            senhaVálida = true;
+        }
+
+        for (var i = 0; i < tamanho_senha; i++) {
+            verifica_num_tmp = Number(senha[i]);
+            if (!isNaN(verifica_num_tmp)) {
+                i = tamanho_senha;
+            } else {
+                senhaVálida = false;
+            }
+
+        }
+
+        if (senha.includes('!') || senha.includes('"') || senha.includes('#') || senha.includes('$') ||
+            senha.includes('%') || senha.includes('&') || senha.includes("'") || senha.includes('(') || senha.includes(')')
+            || senha.includes('*') || senha.includes('+') || senha.includes(',') || senha.includes('-') || senha.includes('.')
+            || senha.includes('/') || senha.includes(':') || senha.includes(';') || senha.includes('<') || senha.includes('<')
+            || senha.includes('=') || senha.includes('>') || senha.includes('?') || senha.includes('@') || senha.includes('[')
+            || senha.includes('\\') || senha.includes(']') || senha.includes('^') || senha.includes('_') || senha.includes('`')
+            || senha.includes('`') || senha.includes('{') || senha.includes('|') || senha.includes('}') || senha.includes('~')
+        ) {
+            senhaComCaractereEspecial = true;
+        } else {
+            senhaVálida = false;
         }
 
         if(senha != confirmarSenha){

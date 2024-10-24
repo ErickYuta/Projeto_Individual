@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/login.css">
-    <link rel="shortcut icon" href="./assets/icons/logoAstronomia.png" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icons/logoAstronomia.png" type="image/x-icon">
     <title>Página de Login</title>
 </head>
 <body>
     <div class="login">
         <div class="container">
-            <div id="div_mensagem"></div>
             <div class="card card-login">
                 <h1>Faça seu Login!</h1>
                 <div class="formulario">
                     <div class="campo">
-                        <span>E-mail:</span>
-                        <input id="ipt_email" type="text" placeholder="exemplo@hotmail.com">
+                        <span>Login</span>
+                        <input id="ipt_login" type="text" placeholder="Lorem">
                     </div>
                     <div class="campo">
                         <span>Senha:</span>
                         <input id="ipt_senha" type="password" placeholder="******">
                     </div>
-                    <a href="esqueceu_senha.html">Esqueceu a senha?</a>
-                    <button class="botao" onclick="entrar()">LOGIN</a></button>
+                    <button class="botao" onclick="entrar()">LOGIN</button>
                     <a href="cadastro.html">Criar conta</a>
                 </div>
+                <div id="div_mensagem" style="color: white; text-align: center; height: 20px; width: 20px;"></div>
             </div>
         </div>
     </div>
@@ -33,34 +32,19 @@
 </html>
 <script>
     function entrar(){
-        var email = ipt_email.value;
+        var login = ipt_login.value;
         var senha = ipt_senha.value;
-        
-        if(email == 'admin@hotmail.com' && senha == 'admin'){
-            alert('Email e Senha válido')
-            window.location.href = 'dashboard.html';
-        }
 
-        var includesArroba = email.includes('@');
-        var termina_com = email.endsWith('.com');
-
-        if(includesArroba && termina_com){
-            mensagem += 'Email válido'
-        } else {
-            mensagem += 'Email inválido'
+        var mensagem = '';                
+        if(login == '' || senha == ''){
+            alert('Preencha os campos para prosseguir!');
         }
-        var mensagem = '';
-        var tamanho_senha = senha.length;
-        var caracteres_especiais = senha.includes('@','!','#','%','&','°');
-        var contem_numeros = senha.includes(1,2,3,4,5,6,7,8,9,0);
-        
-        if(tamanho_senha < 8){
-            mensagem += 'Sua senha não possui 8 caracteres <br>'
-        } 
-        if(!caracteres_especiais || !contem_numeros){
-            mensagem += 'Não contém caractere especial ou números!'
+        if(login == 'admin' && senha == 'admin'){
+            alert('Login efetuado com sucesso!')
+            window.location.href = 'dashboard.html'
         }
 
         div_mensagem.innerHTML = mensagem;
+
     }
 </script>
