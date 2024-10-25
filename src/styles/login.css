@@ -14,15 +14,12 @@ body{
     align-items: center;
 }
 .container .card-login {
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(100px);  /* Diferencial*/
-    width: 40%;
-    height: 60vh;
+    background-color: #dce9be;
+    width: 70%;
+    height: 70vh;
     border-radius: 10px;
     align-items: center;
     display: flex;
-    flex-direction: column;
     justify-content: center;
 }
 .container{
@@ -31,7 +28,6 @@ body{
     align-items: center;
     width: 80%;
     height: 70%;
-    flex-direction: column;
 }
 .formulario{
     text-align: center;
@@ -47,9 +43,10 @@ body{
 .card-login h1{
     text-align: left;
     font-size: 32px;
+    color: black;
 }
 .formulario a{
-    color: #fff;
+    color: black;
 }
 .formulario .campo{
     display: flex;
@@ -57,28 +54,26 @@ body{
     flex-direction: column;
     text-align: left;
 }
-.formulario .botao{
+
+.botao {
     padding: 15px;
     width: 80%;
     margin: 10px;
-    border-radius: 30px;
     border: 1px solid black;
-    margin-top: 10px;
-}
-.botao {
     color: black;
     cursor: pointer;
     font-weight: bold;
     margin: 10px;
     font-size: 16px;
+    border-radius: 3px;
 }
 .campo span{
-    color: #fff;
+    color: black;
     font-size: 16px;
     margin-left: 10px;
 }
 .campo input{
-    border: 2px solid #fff;
+    border: 2px solid black;
     padding: 10px;
     margin: 10px;
     color: #fff;
@@ -86,4 +81,22 @@ body{
     outline: none;
     border-radius: 5px;
     width: 20vw;
+}
+.left-painel{
+    width: 57%;
+    height: 100%;
+    background-image: url(../assets/img/biblioteca.jpg);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.right-painel{
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
