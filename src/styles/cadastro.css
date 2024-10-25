@@ -5,9 +5,6 @@ body {
     padding: 0;
     box-sizing: border-box;
     font-family: 'Barlow', sans-serif;
-    background-image: url(../assets/img/rocket.png);
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
 }
 .container {
     display: flex;

@@ -50,7 +50,7 @@
         var confirmarSenha = ipt_confirmarSenha.value;
 
         var emailVálido = true;
-        var senhaVálida = true;
+        var senhaVálida = false;
 
         var senhaSuficiente = false;
         var senhaComNumero = false;
@@ -58,63 +58,62 @@
         var senhaComMinusculo = false;
         var senhaComMaiusculo = false;
         
+        var tamanho_senha = senha.length;
+        var mensagem = '';
+
+        if(login == '' || email == '' || telefone == '' || senha == '' || confirmarSenha == ''){
+            alert('Preencha os campos para prosseguir')
+        } else {
+            
+        }
         if (email.includes('.') && email.includes('@')) {
             if (!(email.indexOf('.') == (email.indexOf('@') + 1))) {
-                loginVálido = true;
+                mensagem = 'Email válido';
+                emailVálido = true;
             }
         }
 
-        if (senha.toUpperCase() == senha && senha.toLowerCase() == senha) {
-            senhaVálida = false;
-        } else {
+            if(tamanho_senha < 8){
+                mensagem = 'Senha não possui 8 caracteres'
+                senhaSuficiente = false;
+            } else {
+                senhaSuficiente = true;
+            }
 
             if (senha.toLowerCase() == senha) {
-                senhaVálida = false;
+                senhaComMaiusculo = true;
+                mensagem = 'Possui caractere maiúsculo'
             } else {
-                senhaVálida = true;
+                senhaComMaiusculo = false;
             }
 
             if (senha.toUpperCase() == senha) {
-                senhaVálida = false;
+                senhaComMinusculo = true;
+                mensagem = 'Possui caractere minúsculo'
             } else {
-                senhaVálida = true;
-            }
-        }
-
-        if (tamanho_senha < 8) {
-            senhaVálida = false;
-        } else {
-            senhaVálida = true;
-        }
-
-        for (var i = 0; i < tamanho_senha; i++) {
-            verifica_num_tmp = Number(senha[i]);
-            if (!isNaN(verifica_num_tmp)) {
-                i = tamanho_senha;
-            } else {
-                senhaVálida = false;
+                senhaComMinusculo = false;
             }
 
-        }
-
-        if (senha.includes('!') || senha.includes('"') || senha.includes('#') || senha.includes('$') ||
-            senha.includes('%') || senha.includes('&') || senha.includes("'") || senha.includes('(') || senha.includes(')')
-            || senha.includes('*') || senha.includes('+') || senha.includes(',') || senha.includes('-') || senha.includes('.')
-            || senha.includes('/') || senha.includes(':') || senha.includes(';') || senha.includes('<') || senha.includes('<')
-            || senha.includes('=') || senha.includes('>') || senha.includes('?') || senha.includes('@') || senha.includes('[')
-            || senha.includes('\\') || senha.includes(']') || senha.includes('^') || senha.includes('_') || senha.includes('`')
-            || senha.includes('`') || senha.includes('{') || senha.includes('|') || senha.includes('}') || senha.includes('~')
-        ) {
+        if (senha.includes('!') || senha.includes('@') || senha.includes('#') || senha.includes('$') ||
+            senha.includes('%') || senha.includes('&') ) {
             senhaComCaractereEspecial = true;
+            mensagem = 'Senha possui caractere especial'
         } else {
-            senhaVálida = false;
+            senhaComCaractereEspecial = false;
+            mensagem = 'Senha não possui caractere especial'
         }
-
+        
         if(senha != confirmarSenha){
-            alert('A Senha é diferente');
+            mensagem = 'Senha é diferente'
         } else {
-            alert('A Senha é igual a outra');
+            mensagem = 'Senha é igual';
         }
+        if(emailVálido && senhaVálida){
+            window.location.href = 'login.html';
+        } else {
+            alert('Erro');
+        }
+        div_mensagem.innerHTML = mensagem;
 
     }
 </script>
