@@ -11,20 +11,24 @@ body {
     height: 100vh;
     justify-content: end;
 }
-
+.left{
+    background-color: red;
+    height: 100%;
+    width: 60%;
+}
 .right {
     background-color: transparent;
     border: 2px solid rgba(255, 255, 255, .2);
     backdrop-filter: blur(20px);  /* Diferencial*/
     display: flex;
-    width: 40%;
+    width: 50%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 20px;
 }
 .right h1{
-    color: #fff;
+    color: black;
     font-size: 48px;
     font-weight: bold;
 }
@@ -34,7 +38,7 @@ body {
     width: 80%;
 }
 .campo span{
-    color: #fff;
+    color: black;
     font-size: 16px;
 }
 .campo input {
@@ -68,5 +72,5 @@ body {
 }
 .conta a{
     text-decoration: underline;
-    color: #fff;
+    color: black;
 }
