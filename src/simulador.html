@@ -33,9 +33,11 @@
         </div>
     </div>
     <div class="simulador">
+      <div class="container">
       <h1>Simulador de Livros</h1>
         <span>Qual seu gênero favorito?</span> 
-        <select id="slt_genero">
+        <select id="slt_genero"> 
+          <option value="#" selected disabled>Selecione uma opção</option>
           <option value="ficcao">Ficção Científica</option>
           <option value="literatura">Literatura e Filosofia</option>
           <option value="acao">Ação</option>
@@ -43,15 +45,55 @@
           <option value="romance">Romance</option>
           <option value="ajuda">Auto-ajuda</option>
         </select>
-        <span>Quantas páginas você quer ler?</span> <br>
+        <span>Quantas páginas você quer ler?</span> 
         <input type="number" id="ipt_paginas">
-        <span>Quantas horas você quer ler por dia?</span> <br>
-        <input type="number" id="ipt_horas">
+        <span>Quanto tempo você quer ler por dia?</span>
+        <select id="slt_tempo">
+          <option value="#" selected disabled>Selecione uma opção</option>
+          <option value="iniciante">10 minutos</option>
+          <option value="iniciante">20 minutos</option>
+          <option value="intermediário">30 minutos</option>
+          <option value="intermediário">40 minutos</option>
+          <option value="avancado">1 hora</option>
+          <option value="avancado">2 horas</option>
+        </select>
         <button onclick="analisar()">Analisar</button>
         <div id="div_mensagem"></div>
+      </div>
     </div>
     <footer class="footer-simulador">
       <span>Feito por Erick</span>
     </footer>
 </body>
 </html>
+<script>
+  
+  function analisar(){
+    var genero = slt_genero.value;
+    var paginas = Number(ipt_paginas.value);
+    var horas = slt_tempo.value;
+    
+    var mensagem = '';
+
+    if(genero == '#' || paginas == 0 || horas == '#'){
+      mensagem = `<span style='color:red'>Preencha os campos para prosseguir</span>`
+    }
+
+    if(genero == 'ficcao'){
+
+      if(paginas < 100){
+
+      } else {
+
+      }
+
+      if(horas < 30){
+
+      } else {
+
+      }
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>
