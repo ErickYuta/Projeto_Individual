@@ -159,13 +159,17 @@ body {
 
 .section-main button {
     width: 20%;
-    height: 7%;
+    height: 12%;
     border: none;
     margin-top: 10px;
     font-size: 20px;
     border-radius: 10px;
     background-color: #f84339;
     color: #fff;
+    padding: 10px;
+}
+.section-main button:hover{
+    background-color: #f47c76;
 }
 .section-main button a{
     text-decoration: none;
@@ -221,7 +225,7 @@ body {
 
 .about .section-about {
     display: flex;
-    width: 90%;
+    width: 80%;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -234,12 +238,13 @@ body {
 }
 
 .section-about img {
-    height: 60%;
-    width: 40%;
+    height: 70%;
+    width: 70%;
+    border-radius: 50%;
 }
 
 .section-about span {
-    font-size: 28px;
+    font-size: 18px;
     color: #fff;
 }
 .topicos{
