@@ -1,0 +1,16 @@
+.simulador{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: beige;
+    height: 80vh;
+}
+.footer-simulador{
+    height: 9.2vh;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cyan;
+}

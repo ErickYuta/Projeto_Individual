@@ -154,7 +154,7 @@ body {
     justify-content: center;
     flex-direction: column;
     width: 70%;
-    height: 120%;
+    height: 80%;
 }
 
 .section-main button {
@@ -251,6 +251,7 @@ body {
 .topicos img{
     width: 40%;
     margin: 10px;
+    border-radius: 50%;
 }
 .genero{
     text-align: center;

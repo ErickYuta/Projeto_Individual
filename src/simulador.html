@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles/style.css">
+    <link rel="stylesheet" href="./styles/simulador.css">
+    <title>Simulador</title>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+          <img src="./assets/icons/library.png" alt="">
+            <h1>Biblioteca dos Livros</h1>
+            <ul class="navbar">
+            <li class="agora">
+              <a href="index.html">Início</a>
+            </li>
+            <li>
+              <a href="./simulador.html">Simulação</a>
+            </li>
+            <li>
+                <a href="explorar.html">Explorar</a>
+            </li>
+            <li>
+              <a href="index.html#footer">Contato</a>
+            </li>
+            <li>
+              <a href="index.html#about">Sobre</a>
+            </li>
+          </ul>
+          <button class="login"><a href="./account/login.html">ENTRAR</a></button>
+        </div>
+    </div>
+    <div class="simulador">
+      <h1>Simulador de Livros</h1>
+        <span>Qual seu gênero favorito?</span> 
+        <select id="slt_genero">
+          <option value="ficcao">Ficção Científica</option>
+          <option value="literatura">Literatura e Filosofia</option>
+          <option value="acao">Ação</option>
+          <option value="terror">Suspense e Terror</option>
+          <option value="romance">Romance</option>
+          <option value="ajuda">Auto-ajuda</option>
+        </select>
+        <span>Quantas páginas você quer ler?</span> <br>
+        <input type="number" id="ipt_paginas">
+        <span>Quantas horas você quer ler por dia?</span> <br>
+        <input type="number" id="ipt_horas">
+        <button onclick="analisar()">Analisar</button>
+        <div id="div_mensagem"></div>
+    </div>
+    <footer class="footer-simulador">
+      <span>Feito por Erick</span>
+    </footer>
+</body>
+</html>
