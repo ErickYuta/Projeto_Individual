@@ -12,14 +12,14 @@ body {
     justify-content: end;
 }
 .left{
-    background-color: red;
-    height: 100%;
+    background-image: url(../assets/img/background-pqueuno.jpg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 100vh;
     width: 60%;
 }
 .right {
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, .2);
-    backdrop-filter: blur(20px);  /* Diferencial*/
+    background-color: #d1bd95;
     display: flex;
     width: 50%;
     flex-direction: column;
@@ -71,6 +71,9 @@ body {
     font-size: 20px;
 }
 .conta a{
-    text-decoration: underline;
+    text-decoration: none;
     color: black;
+}
+.conta a:hover{
+    text-decoration: underline;
 }

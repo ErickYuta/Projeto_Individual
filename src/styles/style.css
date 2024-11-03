@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+*{
+    scroll-behavior: smooth;
+}
 body {
     margin: 0;
     padding: 0;
@@ -283,7 +286,7 @@ body {
 
 /* Seção Footer */
 .footer {
-    background-color: #636363;
+    background-color: #d0cad0;
     height: 100%;
     width: 100%;
 }
@@ -291,36 +294,57 @@ body {
     display: flex;
 }
 .left-footer{
-    width: 20%;
+    margin-top: 20px;
+    width: 100%;
+    margin-left: 250px;
     height: 100%;
     display: flex;
-    margin: auto;
     flex-direction: column;
-}
-.right-footer{
-    width: 60%;
 }
 .left-footer a {
     color: black;
+    text-decoration: none;
+}
+.left-footer a:hover{
+    text-decoration: underline;
 }
 .contato-footer{
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
-    width: 20%;
-    height: 40%;
+    width: 100%;
+    height: 10%;
 }
 .box{
     display: flex;
 }
 .box span{
-    margin-top: 10px;
+    margin-top: 22px;
 }
 .box a {
     color: black;
+    text-decoration: none;
+}
+.box a:hover{
+    text-decoration: underline;
 }
 .contatos{
-    margin-top: 20px;
     display: flex;
+    width: 100%;
+    flex-direction: column;
+    height: 100%;
+    margin-top: 20px;
+}
+.contatos .box-redes{
+    display: flex;
+}
+.box-redes span{
+    margin-top: 35px;
+    margin-left: 10px;
+}
+.contatos img{
+    width: 10%;
+    margin-top: 30px;
 }
 .contato-footer img{
     width: 12%;
@@ -337,5 +361,5 @@ body {
     width: 5%;
 }
 .footer-author span{
-    color: #fff;
+    color: black;
 }
