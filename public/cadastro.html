@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>AquaTech | Cadastro</title>
+
+  <script src="./js/sessao.js"></script>
+
+  <link rel="stylesheet" href="./css/cadastro.css" />
+  <link rel="icon" href="./assets/icon/favicon2.ico" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+</head>
+
+<body>
+  <div class="container">
+    <div class="left"></div>
+        <div class="right">
+            <h1>Crie sua conta!</h1>
+            <div class="formulario">
+                <div class="campo">
+                    <span>Login:</span>
+                    <input type="text" id="ipt_login" placeholder="Apelido">
+                </div>
+                <div class="campo">
+                    <span>Email:</span>
+                    <input type="text" id="ipt_email" placeholder="example@hotmail.com">
+                </div>
+                <div class="campo">
+                    <span>CPF:</span>
+                    <input type="text" id="ipt_CPF" placeholder="123.456.789-12" maxlength="11">
+                </div>
+                <div class="campo">
+                    <span>Telefone:</span>
+                    <input type="text" id="ipt_telefone" placeholder="(11)34567-8910" maxlength="11">
+                </div>
+                <div class="campo">
+                    <span>Senha:</span>
+                    <input type="password" id="ipt_senha" placeholder="****">
+                </div>
+                <div class="campo">
+                    <span>Confirmar Senha:</span>
+                    <input type="password" id="ipt_confirmarSenha" placeholder="****">
+                </div>
+                <div class="conta">
+                    <button onclick="cadastrar()"><a href="login.html">Cadastrar-se</a></button>
+                    <a href="login.html">Já possuí conta?</a>
+                    <div id="div_erros_login"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = ipt_login.value;
+    var emailVar = ipt_email.value;
+    var cpfVar = ipt_CPF.value;
+    var telefoneVar = ipt_telefone.value;
+    var senhaVar = ipt_senha.value;
+    var confirmacaoSenhaVar = ipt_confirmarSenha.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      cpfVar == ""
+    ) {
+      cardErro.style.display = "block";
+      div_erros_login.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    if(!emailVar.includes('@') || !emailVar.includes('.')){
+      div_erros_login.innerHTML  = 'Email não contém @ ou .';
+    }
+    if(senhaVar.length < 6){
+      div_erros_login.innerHTML  = 'Quantidade de caracteres insuficiente na senha';
+    }
+    if(senhaVar != confirmacaoSenhaVar){
+      div_erros_login.innerHTML = 'A senha é diferente!'
+    }    
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        cpfServer: cpfVar,
+        telefoneServer:telefoneVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "./login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
