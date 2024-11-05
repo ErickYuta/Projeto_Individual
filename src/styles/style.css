@@ -7,6 +7,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat';
+    background-color: #cbc8c8;
 }
 
 /* Seção Header */
@@ -363,3 +364,17 @@ body {
 .footer-author span{
     color: black;
 }
+.pilares{
+    height: 70vh;
+    background-color: #cbc8c8;
+    display: flex;
+}
+.pilar-container img{
+    width: 40%;
+}
+.pilar-container{
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+    align-items: center;
+}   
