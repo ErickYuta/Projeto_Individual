@@ -24,16 +24,20 @@
                     <input type="text" id="ipt_email" placeholder="example@hotmail.com">
                 </div>
                 <div class="campo">
+                    <span>CPF:</span>
+                    <input type="text" id="ipt_CPF" placeholder="123.456.789-12" maxlength="11">
+                </div>
+                <div class="campo">
                     <span>Telefone:</span>
-                    <input type="text" id="ipt_telefone" placeholder="(12) 34567-8910">
+                    <input type="text" id="ipt_telefone" placeholder="(11)34567-8910" maxlength="11">
                 </div>
                 <div class="campo">
                     <span>Senha:</span>
-                    <input type="password" id="ipt_senha" placeholder="*********">
+                    <input type="password" id="ipt_senha" placeholder="****">
                 </div>
                 <div class="campo">
                     <span>Confirmar Senha:</span>
-                    <input type="password" id="ipt_confirmarSenha" placeholder="*********">
+                    <input type="password" id="ipt_confirmarSenha" placeholder="****">
                 </div>
                 <div class="conta">
                     <button onclick="cadastrar()"><a href="login.html">Cadastrar-se</a></button>
@@ -48,6 +52,7 @@
     function cadastrar(){
         var login = ipt_login.value;
         var email = ipt_email.value;
+        var cpf = ipt_CPF.value;
         var telefone = ipt_telefone.value;
         var senha = ipt_senha.value;
         var confirmarSenha = ipt_confirmarSenha.value;
@@ -64,7 +69,7 @@
         var tamanho_senha = senha.length;
         var mensagem = '';
 
-        if(login == '' || email == '' || telefone == '' || senha == '' || confirmarSenha == ''){
+        if(login == '' || email == '' || telefone == '' || senha == '' || confirmarSenha == '' || cpf == ''){
             alert('Preencha os campos para prosseguir')
         } else {
             
