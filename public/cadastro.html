@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>AquaTech | Cadastro</title>
+  <title>Página de Cadastro | Livros</title>
 
   <script src="./js/sessao.js"></script>
 
@@ -46,7 +46,7 @@
                     <input type="password" id="ipt_confirmarSenha" placeholder="****">
                 </div>
                 <div class="conta">
-                    <button onclick="cadastrar()"><a href="login.html">Cadastrar-se</a></button>
+                    <button onclick="cadastrar()">Cadastrar-se</button>
                     <a href="login.html">Já possuí conta?</a>
                     <div id="div_erros_login"></div>
                 </div>
@@ -79,15 +79,11 @@
       confirmacaoSenhaVar == "" ||
       cpfVar == ""
     ) {
-      cardErro.style.display = "block";
       div_erros_login.innerHTML =
         "(Mensagem de erro para todos os campos em branco)";
 
-      finalizarAguardar();
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    } 
 
     if(!emailVar.includes('@') || !emailVar.includes('.')){
       div_erros_login.innerHTML  = 'Email não contém @ ou .';
@@ -119,14 +115,7 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
             window.location = "./login.html";
-          }, "2000");
 
           limparFormulario();
           finalizarAguardar();
@@ -140,8 +129,5 @@
       });
 
     return false;
-  }
-  function sumirMensagem() {
-    cardErro.style.display = "none";
   }
 </script>

@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Montserrat';
+    background-image: url(../assets/img/banner.jpg);
 }
 
 /* Seção Header */
@@ -63,20 +64,6 @@ body {
     font-size: 20px;
 }
 
-.dropButton {
-    color: white;
-    background-color: #2b4c7e;
-    padding: 10px;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-}
-
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
 .content {
     display: none;
     position: absolute;
@@ -131,13 +118,12 @@ body {
     flex-direction: column;
     align-items: center;
     background-image: url(../assets/img/banner.jpg);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    background-size: 100%;
 }
 .main-content{
     background-color: #fff;
     width: 70%;
-    height: 200vh;
+    height: 400vh;
     display: flex;
     flex-direction: column;
 }
@@ -152,7 +138,7 @@ body {
 .main-content .box{
     border: 2px solid black;
     width: 40%;
-    height: 30%;
+    height: 80%;
     margin: 40px;
 }
 .box li{
@@ -165,4 +151,17 @@ body {
 .generos {
     margin-left: 40px;
     margin-right: 20px;
+}
+.generos img{
+    width: 50%;
+    margin-left: 200px;
+    margin-top: 30px;
+}
+.conteudo{
+    display: flex;
+}
+.conteudo img{
+    width: 35%;
+    margin: auto;
+    height: 82%;
 }
