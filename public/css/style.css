@@ -206,13 +206,13 @@ body {
     margin: 0;
     padding: 0;
     font-size: 26px;
-    color: #ffffff;
+    color: black;
 }
 
 /* Seção Sobre */
 .about {
     height: 100vh;
-    background-image: url(../assets/img/about\ \(1\).jpg);
+    background-image: url(../assets/img/background-pqueuno.jpg);
     background-size: 100%;
     background-repeat: no-repeat;
     font-size: 64px;
@@ -224,7 +224,7 @@ body {
 
 .about span {
     font-size: 48px;
-    color: #fff;
+    color: black;
 }
 
 .about .section-about {
@@ -249,7 +249,8 @@ body {
 
 .section-about span {
     font-size: 18px;
-    color: #fff;
+    color: black;
+    font-weight: 600;
 }
 .topicos{
     display: flex;
@@ -282,7 +283,12 @@ body {
     flex-direction: column;
     width: 50%;
     margin-top: 150px;
-
+}
+.section-about .sobre-img{
+    border-radius: 0%;
+    width: 55%;
+    height: 50%;
+    margin-left: 20px;
 }
 
 /* Seção Footer */
@@ -365,12 +371,14 @@ body {
     color: black;
 }
 .pilares{
-    height: 70vh;
+    height: 80vh;
+    width: 100%;
     background-color: #cbc8c8;
     display: flex;
 }
 .pilar-container img{
-    width: 40%;
+    width: 65%;
+    margin: auto;
 }
 .pilar-container{
     display: flex;
