@@ -18,41 +18,41 @@
 <body>
   <div class="container">
     <div class="left"></div>
-        <div class="right">
-            <h1>Crie sua conta!</h1>
-            <div class="formulario">
-                <div class="campo">
-                    <span>Login:</span>
-                    <input type="text" id="ipt_login" placeholder="Apelido">
-                </div>
-                <div class="campo">
-                    <span>Email:</span>
-                    <input type="text" id="ipt_email" placeholder="example@hotmail.com">
-                </div>
-                <div class="campo">
-                    <span>CPF:</span>
-                    <input type="text" id="ipt_CPF" placeholder="123.456.789-12" maxlength="11">
-                </div>
-                <div class="campo">
-                    <span>Telefone:</span>
-                    <input type="text" id="ipt_telefone" placeholder="(11)34567-8910" maxlength="11">
-                </div>
-                <div class="campo">
-                    <span>Senha:</span>
-                    <input type="password" id="ipt_senha" placeholder="****">
-                </div>
-                <div class="campo">
-                    <span>Confirmar Senha:</span>
-                    <input type="password" id="ipt_confirmarSenha" placeholder="****">
-                </div>
-                <div class="conta">
-                    <button onclick="cadastrar()">Cadastrar-se</button>
-                    <a href="login.html">Já possuí conta?</a>
-                    <div id="div_erros_login"></div>
-                </div>
-            </div>
+    <div class="right">
+      <h1>Crie sua conta!</h1>
+      <div class="formulario">
+        <div class="campo">
+          <span>Login:</span>
+          <input type="text" id="ipt_login" placeholder="Apelido">
         </div>
+        <div class="campo">
+          <span>Email:</span>
+          <input type="text" id="ipt_email" placeholder="example@hotmail.com">
+        </div>
+        <div class="campo">
+          <span>CPF:</span>
+          <input type="text" id="ipt_CPF" placeholder="123.456.789-12" maxlength="11">
+        </div>
+        <div class="campo">
+          <span>Telefone:</span>
+          <input type="text" id="ipt_telefone" placeholder="(11)34567-8910" maxlength="11">
+        </div>
+        <div class="campo">
+          <span>Senha:</span>
+          <input type="password" id="ipt_senha" placeholder="****">
+        </div>
+        <div class="campo">
+          <span>Confirmar Senha:</span>
+          <input type="password" id="ipt_confirmarSenha" placeholder="****">
+        </div>
+        <div class="conta">
+          <button onclick="cadastrar()">Cadastrar-se</button>
+          <a href="login.html">Já possuí conta?</a>
+          <div id="div_erros_login"></div>
+        </div>
+      </div>
     </div>
+  </div>
 </body>
 
 </html>
@@ -71,29 +71,46 @@
     var senhaVar = ipt_senha.value;
     var confirmacaoSenhaVar = ipt_confirmarSenha.value;
 
+    var caracteresEspeciais = ['!', '@', '#', '$', '%', '&', '*']
+    var numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      cpfVar == ""
+      cpfVar == "" ||
+      telefoneVar == ""
     ) {
       div_erros_login.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+        "Preencha todos os campos para prosseguir";
 
       return false;
-    } 
+    }
 
-    if(!emailVar.includes('@') || !emailVar.includes('.')){
-      div_erros_login.innerHTML  = 'Email não contém @ ou .';
+    if (!emailVar.includes('@') || !emailVar.includes('.')) {
+      div_erros_login.innerHTML = 'Email não contém @ ou .';
+      return false;
     }
-    if(senhaVar.length < 6){
-      div_erros_login.innerHTML  = 'Quantidade de caracteres insuficiente na senha';
+    if (senhaVar.length > 6) {
+      if (senhaVar.includes(caracteresEspeciais) && senhaVar.includes(numeros)) {
+        div_erros_login.innerHTML = 'Senha contém caractere especial e números';
+      } else {
+        div_erros_login.innerHTML = 'Senha não contém caractere especial e números';
+        return false
+      }
+
+    } else {
+      div_erros_login.innerHTML = 'Quantidade de caracteres insuficiente na senha';
+      return false;
     }
-    if(senhaVar != confirmacaoSenhaVar){
+    if (senhaVar != confirmacaoSenhaVar) {
       div_erros_login.innerHTML = 'A senha é diferente!'
-    }    
+      return false;
+    } else {
+      div_erros_login.innerHTML  = 'A senha é igual';
+    }
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -106,7 +123,7 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         cpfServer: cpfVar,
-        telefoneServer:telefoneVar,
+        telefoneServer: telefoneVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
       }),
@@ -115,7 +132,7 @@
         console.log("resposta: ", resposta);
 
         if (resposta.ok) {
-            window.location = "./login.html";
+          window.location = "./login.html";
 
           limparFormulario();
           finalizarAguardar();
