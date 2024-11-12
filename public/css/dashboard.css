@@ -12,9 +12,9 @@ body {
   display: flex;
   justify-content: center;
 }
-
 .dash-right .avisos {
   width: 100%;
+  background-color: #655f5f;
   color: rgb(216, 216, 216);
   font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -120,7 +120,7 @@ body {
   position: relative;
   top: 0;
   left: 20%;
-  background-color: #161618;
+  background-color: #655f5f;
   height: 100vh;
   overflow: auto;
 }
@@ -129,7 +129,7 @@ body {
   /* border: 2px solid pink; */
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 95%;
   margin: auto;
   margin-top: 10px;
   background-color: #212124;
@@ -148,18 +148,21 @@ body {
 }
 
 .item-regua {
-  width: 20%;
+  width: 40%;
   text-align: center;
   height: 80px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  background-color: #fff;
+  border: 1px solid black;
 }
 
 .item-regua p {
   margin: 0;
   font-weight: 500;
+  font-size: 24px;
 }
 
 .item-regua p:nth-child(2) {
@@ -329,6 +332,7 @@ canvas {
 
 .janela {
   display: flex;
+  background-color: #655f5f;
   /* width: 100vw; */
 }
 
@@ -355,7 +359,7 @@ canvas {
   display: flex;
   width: 70%;
   height: fit-content;
-  background-color: #161618;
+  background-color: #655f5f;
   position: relative;
   top: 0;
   left: 25%;
@@ -386,21 +390,17 @@ canvas {
 .btn-nav {
   width: 100%;
   height: 5%;
-  color: white;
-  background-color: #e6005a;
+  color: black;
+  background-color: #fff;
   text-align: center;
+  padding: 5px -2px 5px 5px;
 }
-
-.btn-nav-white {
-  width: 100%;
-  height: 5%;
-  background-color: white;
-  text-align: center;
+.btn-nav a{
+  color: black;
+  text-decoration: none;
 }
-.btn-nav-white a{
-    color: red;
-    font-weight: 800;
-    text-align: center;
+.btn-nav:hover{
+  background-color: #655f5f;
 }
 
 .btn-nav h3,
@@ -421,6 +421,11 @@ canvas {
   padding: 10px 15px;
   margin-bottom: 100px;
   cursor: pointer;
+}
+.btn-logout:hover{
+  transition: 0.5 ease;
+  background-color: #fff;
+  color: black;
 }
 .btn-logout img{
     width: 60%;

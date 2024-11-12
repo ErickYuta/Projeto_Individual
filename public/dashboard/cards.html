@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon/library.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,7 +25,7 @@
     <div class="janela">
 
         <div class="header-left dash-header">
-
+            <img src="../assets/icon/library.png" alt="" style="height: 10%; margin-top: 10px;">
             <h1>Livros</h1>
 
             <div class="hello">
@@ -33,27 +33,22 @@
             </div>
 
             <div class="btn-nav">
-                <h3>Dashboard</h3>
+                <a href="cards.html">
+                    <h3>Dashboard</h3>
+                </a>
             </div>
 
-            <div class="btn-nav-white">
+            <div class="btn-nav">
                 <a href="./dashboard.html">
                     <h3>Gráficos</h3>
                 </a>
             </div>
 
-            <div class="btn-nav-white">
+            <div class="btn-nav">
                 <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                    <h3>Avaliações</h3>
                 </a>
             </div>
-
-            <div class="btn-nav-white">
-                <a href="./conta.html">
-                    <h3>Minha Conta</h3>
-                </a>
-            </div>
-
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
@@ -61,7 +56,34 @@
         </div>
 
         <div class="dash">
- 
+            <div id="alerta">
+            </div>
+            <div class="area-parametros-alerta">
+                <p class="titulo-legenda">
+                    KPIs
+                </p>
+                <div class="parametros-alerta">
+                    <div class="item-regua">
+                        <p>Perigo</p>
+                        <p>&lt;=5°C</p>
+                    </div>
+                    <div class="item-regua">
+                        <p>Alerta</p>
+                        <p>&lt;=10°C</p>
+                    </div>
+                    <div class="item-regua">
+                        <p>Ideal</p>
+                        <p>20°C</p>
+                    </div>
+                    <div class="item-regua">
+                        <p>Livro mais procurado:</p>
+                        <p>1984</p>
+                    </div>
+                    <div class="item-regua">
+                        <p>Gênero mais popular</p>
+                        <p>Ficção Científica</p>
+                    </div>
+                </div>
         </div>
 
         </div>

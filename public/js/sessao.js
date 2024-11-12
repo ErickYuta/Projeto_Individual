@@ -5,11 +5,9 @@ function validarSessao() {
     var cpf = sessionStorage.CPF_USUARIO;
 
     var b_usuario = document.getElementById("b_usuario");
-    var cpf_usuario = document.getElementById("cpf_usuario");
 
     if (email != null && nome != null) {
         b_usuario.innerHTML = nome;
-        cpf_usuario.innerHTML = cpf;
     } else {
         window.location = "../login.html";
     }

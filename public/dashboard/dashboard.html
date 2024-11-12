@@ -2,7 +2,7 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../assets/icon/library.png" type="image/x-icon">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,36 +32,30 @@
 
     <div class="janela">
         <div class="header-left">
+            <img src="../assets/icon/library.png" alt="" style="height: 10%;">
             <h1>Livros</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav-white">
+            <div class="btn-nav">
                 <a href="./cards.html">
-                    Dashboard
+                    <h3>Dashboard</h3>
                 </a>
             </div>
 
             <div class="btn-nav">
-
-                <h3>Gráficos</h3>
-
+                <a href="dashboard.html">
+                    <h3>Gráficos</h3>
+                </a>
             </div>
 
-            <div class="btn-nav-white">
+            <div class="btn-nav">
                 <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
+                    <h3>Avaliações</h3>
                 </a>
             </div>
-
-            <div class="btn-nav-white">
-                <a href="./conta.html">
-                    <h3>Minha Conta</h3>
-                </a>
-            </div>
-
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
             </div>
@@ -247,7 +241,7 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
         };
 

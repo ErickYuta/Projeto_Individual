@@ -17,7 +17,9 @@
 
 <body>
   <div class="container">
-    <div class="left"></div>
+    <div class="left">
+      <h1>"Foi o tempo que dedicaste a rosa que a fez tão importante"</h1>
+    </div>
     <div class="right">
       <h1>Crie sua conta!</h1>
       <div class="formulario">
@@ -34,8 +36,18 @@
           <input type="text" id="ipt_CPF" placeholder="123.456.789-12" maxlength="11">
         </div>
         <div class="campo">
-          <span>Telefone:</span>
-          <input type="text" id="ipt_telefone" placeholder="(11)34567-8910" maxlength="11">
+          <span>Qual seu gênero favorito?</span>
+          <select name="" id="slt_genero">
+            <option value="#" selected disabled>Selecione uma opção</option>
+            <option value="Ficção Científica">Ficção Científica</option>
+            <option value="Ação">Ação</option>
+            <option value="Literatura">Literatura</option>
+            <option value="Filosofia">Filosofia</option>
+            <option value="Suspense">Suspense</option>
+            <option value="Terror">Terror</option>
+            <option value="Romance">Romance</option>
+            <option value="Drama">Drama</option>
+          </select>
         </div>
         <div class="campo">
           <span>Senha:</span>
@@ -67,7 +79,7 @@
     var nomeVar = ipt_login.value;
     var emailVar = ipt_email.value;
     var cpfVar = ipt_CPF.value;
-    var telefoneVar = ipt_telefone.value;
+    var generoVar = slt_genero.value;
     var senhaVar = ipt_senha.value;
     var confirmacaoSenhaVar = ipt_confirmarSenha.value;
 
@@ -81,7 +93,7 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
       cpfVar == "" ||
-      telefoneVar == ""
+      generoVar == "#"
     ) {
       div_erros_login.innerHTML =
         "Preencha todos os campos para prosseguir";
@@ -93,15 +105,7 @@
       div_erros_login.innerHTML = 'Email não contém @ ou .';
       return false;
     }
-    if (senhaVar.length > 6) {
-      if (senhaVar.includes(caracteresEspeciais) && senhaVar.includes(numeros)) {
-        div_erros_login.innerHTML = 'Senha contém caractere especial e números';
-      } else {
-        div_erros_login.innerHTML = 'Senha não contém caractere especial e números';
-        return false
-      }
-
-    } else {
+    if (senhaVar.length < 6) {
       div_erros_login.innerHTML = 'Quantidade de caracteres insuficiente na senha';
       return false;
     }
@@ -123,7 +127,7 @@
         // Agora vá para o arquivo routes/usuario.js
         nomeServer: nomeVar,
         cpfServer: cpfVar,
-        telefoneServer: telefoneVar,
+        generoServer: generoVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
       }),
