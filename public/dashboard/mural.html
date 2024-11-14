@@ -64,13 +64,27 @@
                 <div id="alerta">
                 </div>
                 <div class="container">
-                    <h1>Publicar uma Avaliação</h1>
+                    <h1>Publicar uma Avaliação de um Livro</h1>
                     <div class="div-form">
                         <form id="form_postagem" method="post" onsubmit="return publicar()">
                             <label>
-                                Título:
+                                Título do Livro:
                                 <br>
                                 <input name="titulo" id="titulo" maxlength="100" type="text">
+                            </label>
+                            <label>
+                                Gênero do Livro:
+                                <br>
+                                <select name="genero" id="slt_genero">
+                                    <option value="#" selected disabled>Selecione uma opção</option>
+                                    <option value="Ficção Científia">Ficção Científica</option>
+                                    <option value="Ação">Ação</option>
+                                    <option value="Literatura">Literatura</option>
+                                    <option value="Filosofia">Filosofia</option>
+                                    <option value="Drama">Drama</option>
+                                    <option value="Romance">Romance</option>
+                                    <option value="Terror">Terror e Suspense</option>
+                                </select>
                             </label>
                             <br>
                             <br>
@@ -119,6 +133,7 @@
 
         var corpo = {
             titulo: form_postagem.titulo.value,
+            genero:form_postagem.genero.value,
             descricao: form_postagem.descricao.value,
             nota: form_postagem.nota.value
         }
@@ -203,6 +218,7 @@
                         var spanID = document.createElement("span");
                         var spanTitulo = document.createElement("span");
                         var spanNome = document.createElement("span");
+                        var spanGenero = document.createElement("span");
                         var spanNota = document.createElement("span");
                         var divDescricao = document.createElement("div");
                         var divButtons = document.createElement("div");
@@ -211,7 +227,8 @@
 
 
                         spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                        spanTitulo.innerHTML = "Título do Livro: <b>" + publicacao.titulo + "</b>";
+                        spanGenero.innerHTML = "Gênero do Livro: <b>" + publicacao.genero + "</b>";
                         spanNome.innerHTML = "Usuário: <b>" + publicacao.nome + "</b>";
                         spanNota.innerHTML = "Nota: <b>" + publicacao.nota + "</b>";
                         divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
@@ -222,6 +239,7 @@
                         spanTitulo.id = "inputNumero" + publicacao.idAviso;
                         spanNome.className = "publicacao-nome";
                         spanTitulo.className = "publicacao-titulo";
+                        spanGenero.className = "publicacao-genero";
                         spanNota.className = "publicacao-nota";
                         divDescricao.className = "publicacao-descricao";
 
@@ -238,6 +256,7 @@
                         divPublicacao.appendChild(spanID);
                         divPublicacao.appendChild(spanNome);
                         divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(spanGenero);
                         divPublicacao.appendChild(spanNota);
                         divPublicacao.appendChild(divDescricao);
                         divPublicacao.appendChild(divButtons);
@@ -245,8 +264,6 @@
                         divButtons.appendChild(btnDeletar);
                         feed.appendChild(divPublicacao);
                     }
-
-                    finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
