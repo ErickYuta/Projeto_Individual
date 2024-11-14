@@ -35,24 +35,25 @@ body {
 
 .dash-right .avisos .div-form label {
   width: 95%;
+  font-size: 20px;
 }
 
 .dash-right .avisos .div-form input {
   width: 95%;
-  border-radius: 5px;
+  font-size: 14px;
 }
 
 .dash-right .avisos .div-form select {
   width: 97%;
-  height: 20%;
-  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
 }
 
 .dash-right .avisos .div-form textarea {
   width: 95%;
-  border: 3px solid #e6005a;
   background-color: white;
-  border-radius: 5px;
+  font-size: 14px;
+  color: black;
 }
 
 .dash-right .avisos .div-form button {
@@ -63,8 +64,8 @@ body {
   font-weight: 600;
   font-size: 18px;
   padding: 10px 15px;
-  color: white;
-  background-color: #e6005a;
+  color: black;
+  background-color: #30c4c9;
   width: 120px;
 }
 
@@ -175,31 +176,24 @@ body {
 .item-regua p {
   margin: 0;
   font-weight: 500;
-  font-size: 24px;
+  font-size: 20px;
+}
+.item-regua span{
+  font-size: 30px;
+  font-weight: bold;
 }
 
 .item-regua p:nth-child(2) {
   font-weight: 800;
 }
-
-.perigo-frio {
-  background-color: #5c6bc0;
+.favGenero{
+  background-color: #bfd4b7;
 }
-
-.perigo-quente {
-  background-color: #ff7043;
+.popGenero{
+  background-color: #a89907;
 }
-
-.alerta-frio {
-  background-color: #42a5f5;
-}
-
-.alerta-quente {
-  background-color: #ffee58;
-}
-
-.ideal {
-  background-color: #9ccc65;
+.qtdAvaliacao{
+  background-color: #e9e4bb;
 }
 
 .cards {
@@ -393,11 +387,11 @@ canvas {
 .hello h3 {
   color: black;
   font-weight: 300;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
 }
 
 .hello h3 span {
-  font-weight: 800;
+  font-weight: bold;
 }
 
 .btn-nav {

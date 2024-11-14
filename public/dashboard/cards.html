@@ -22,7 +22,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao()">
+<body onload="validarSessao(), exbirAvaliacoes(), exibirGeneroPopular()">
 
     <div class="janela">
 
@@ -31,7 +31,7 @@
             <h1>Livros</h1>
 
             <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                <h3>Bem vindo, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
             <div class="btn-nav">
@@ -39,13 +39,6 @@
                     <h3>Dashboard</h3>
                 </a>
             </div>
-
-            <div class="btn-nav">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
-                </a>
-            </div>
-
             <div class="btn-nav">
                 <a href="./mural.html">
                     <h3>Avaliações</h3>
@@ -64,17 +57,17 @@
                     Legenda - Parâmetros para Alertas
                 </p>
                 <div class="parametros-alerta">
-                    <div class="item-regua perigo-frio">
+                    <div class="item-regua favGenero">
                         <p>Seu gênero favorito</p>
-                        <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                        <span id="b_genero"></span>
                     </div>
-                    <div class="item-regua alerta-frio">
+                    <div class="item-regua popGenero">
                         <p>Gênero mais popular</p>
-                        <p>&lt;=10°C</p>
+                        <span id="generoPopular"></span>
                     </div>
-                    <div class="item-regua ideal">
-                        <p>Quantiade de avaliações</p>
-                        <p>20°C</p>
+                    <div class="item-regua qtdAvaliacao">
+                        <p>Quantidade de avaliações</p>
+                        <span id="avaliacoes">0</span>
                     </div>
                 </div>
             </div>
@@ -91,26 +84,47 @@
 </body>
 
 <script>
-const ctx = document.getElementById('myChart');
+    b_genero.innerHTML = sessionStorage.GENERO_USUARIO;
+    avaliacoes.innerHTML = sessionStorage.getItem("qtd_Avaliacoes");
 
-new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: ['Ficção Científia', 'Ação', 'Terror', 'Romance', 'Filosofia', 'Literatura'],
-    datasets: [{
-      label: 'Gênero mais popular',
-      data: [12, 19, 3, 5, 2, 3],
-      borderWidth: 1
-    }]
-  },
-  options: {
-    scales: {
-      y: {
-        beginAtZero: true
-      }
+    function exbirAvaliacoes() {
+        const qtdAvaliacoes = sessionStorage.getItem("qtd_Avaliacoes");
+        const spanQtdAvaliacoes = document.getElementById("avaliacoes");
+        if(qtdAvaliacoes == null){
+            spanQtdAvaliacoes.innerHTML = "0";
+        } else {
+            spanQtdAvaliacoes.innerHTML = qtdAvaliacoes;
+        }
     }
-  }
-});
+    function exibirGeneroPopular(){
+        const generoPopular = sessionStorage.getItem("genero_popular");
+        const spanPopular = document.getElementById("generoPopular")
+        if(generoPopular == null){
+            spanPopular.innerHTML = "Nenhum gênero em alta";
+        } else {
+            spanPopular.innerHTML = generoPopular;
+        }
+    }
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Ficção Científia', 'Ação', 'Terror', 'Romance', 'Filosofia', 'Literatura'],
+            datasets: [{
+                label: 'Gênero mais popular',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
 </script>
 
 </html>

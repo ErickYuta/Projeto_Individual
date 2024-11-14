@@ -30,18 +30,12 @@
             <h1>Livros</h1>
 
             <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                <h3>Bem vindo, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
             <div class="btn-nav">
                 <a href="cards.html">
                     <h3>Dashboard</h3>
-                </a>
-            </div>
-
-            <div class="btn-nav">
-                <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
                 </a>
             </div>
 
@@ -70,7 +64,8 @@
                             <label>
                                 Título do Livro:
                                 <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
+                                <input name="titulo" id="titulo" placeholder="Nome do Livro" maxlength="100"
+                                    type="text">
                             </label>
                             <label>
                                 Gênero do Livro:
@@ -84,6 +79,7 @@
                                     <option value="Drama">Drama</option>
                                     <option value="Romance">Romance</option>
                                     <option value="Terror">Terror e Suspense</option>
+                                    <option value="Auto Conhecimento">Auto conhecimento</option>
                                 </select>
                             </label>
                             <br>
@@ -91,14 +87,16 @@
                             <label>
                                 Descrição (máximo de 250 caracteres):
                                 <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
+                                <textarea name="descricao" id="textarea_descricao"
+                                    placeholder="Breve descrição sobre o livro..." maxlength="250" rows="5"></textarea>
                             </label>
                             <br>
                             <br>
                             <label>
                                 Nota:
                                 <br>
-                                <input type="text" id="nota" name="nota">
+                                <input type="number" id="nota" name="nota" placeholder="Nota de 0-10 sobre o livro"
+                                    min="0" max="10">
                             </label>
                             <button>Enviar</button>
                         </form>
@@ -121,7 +119,7 @@
 </html>
 
 <script>
-    
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     function limparFormulario() {
@@ -130,10 +128,11 @@
 
     function publicar() {
         var idUsuario = sessionStorage.ID_USUARIO;
+        var nome = sessionStorage.NOME_USUARIO
 
         var corpo = {
             titulo: form_postagem.titulo.value,
-            genero:form_postagem.genero.value,
+            genero: form_postagem.genero.value,
             descricao: form_postagem.descricao.value,
             nota: form_postagem.nota.value
         }
@@ -149,7 +148,7 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.alert("Publicação realizado com sucesso pelo usuario: " + nome);
                 window.location = "/dashboard/mural.html";
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
@@ -208,8 +207,38 @@
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
+                    // Capturar a quantidade de avaliações feitas para cada usuário e armazenar no storage para ir na dashboard
+                    const qtdAvaliacoes = resposta.length;
+                    sessionStorage.setItem("qtd_Avaliacoes", qtdAvaliacoes);
+
+                    // passo em cada gênero e armazeno eles se forem iguais 
+                    const generoContagem = [];
+                    resposta.forEach(publicacao => {
+
+                        const genero = publicacao.genero;
+                        if (generoContagem[genero]) {
+                            generoContagem[genero]++;
+                        } else {
+                            generoContagem[genero] = 1;
+                        }
+                    });
+
+                    // Verificar qual é o gênero mais comum dentro do loop, e setar ele na variável
+                    var generoPopular = '';
+                    var maxContagem = 0;
+                    for (const genero in generoContagem) {
+                        if (generoContagem[genero] > maxContagem) {
+                            maxContagem = generoContagem[genero];
+                            generoPopular = genero;
+                        }
+                    }
+                    sessionStorage.setItem("genero_popular", generoPopular);
+
+
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
+
+
                     for (let i = 0; i < resposta.length; i++) {
                         var publicacao = resposta[i];
 
