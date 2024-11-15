@@ -86,6 +86,7 @@
     var caracteresEspeciais = ['!', '@', '#', '$', '%', '&', '*']
     var numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 
+    div_erros_login.innerHTML = ''
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
@@ -102,18 +103,47 @@
     }
 
     if (!emailVar.includes('@') || !emailVar.includes('.')) {
-      div_erros_login.innerHTML = 'Email não contém @ ou .';
+      div_erros_login.innerHTML += 'Email não contém @ ou .';
       return false;
+    } else {
+      div_erros_login.innerHTML += 'Email contém @ ou .';
+      return true;
     }
+
     if (senhaVar.length < 6) {
       div_erros_login.innerHTML = 'Quantidade de caracteres insuficiente na senha';
       return false;
     }
+
+    if (senhaVar.toLowerCase() == senhaVar) {
+        div_erros_login.innerHTML += `<span style='color:red'>Senha não possui caracteres maiúsculos</span><br>`;
+        return false;
+      } else {
+        div_erros_login.innerHTML += `<span style='color:green'>Senha possui caracteres maiúsculos</span><br>`;
+        return true;
+      }
+
+      if (senhaVar.toUpperCase() == senhaVar) {
+        div_erros_login.innerHTML += `<span style='color:red'>Senha não possui caracteres minúsculos</span><br> `;
+        return false;
+      } else {
+        div_erros_login.innerHTML += `<span style='color:green'>Senha possui caracteres minúsculos</span><br> `;
+        return true;
+      }
+
     if (senhaVar != confirmacaoSenhaVar) {
-      div_erros_login.innerHTML = 'A senha é diferente!'
+      div_erros_login.innerHTML += 'A senha é diferente!'
       return false;
     } else {
-      div_erros_login.innerHTML  = 'A senha é igual';
+      div_erros_login.innerHTML += 'A senha é igual';
+      return true;
+    }
+    if(senhaVar.includes('!') || senhaVar.includes('@' )){
+      div_erros_login.innerHTML += 'A senha contém caractere especial e números'
+      return true;
+    } else {
+      div_erros_login.innerHTML += 'A senha não contém caractere especial e números'
+      return false;
     }
 
     // Enviando o valor da nova input

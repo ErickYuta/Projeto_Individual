@@ -22,7 +22,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exbirAvaliacoes(), exibirGeneroPopular()">
+<body onload="validarSessao(), exbirAvaliacoes(), exibirGeneroPopular(), atualizarGrafico()">
 
     <div class="janela">
 
@@ -54,7 +54,7 @@
             </div>
             <div class="area-parametros-alerta">
                 <p class="titulo-legenda">
-                    Legenda - Parâmetros para Alertas
+                    Legenda - Gêneros em Alta e Avaliações
                 </p>
                 <div class="parametros-alerta">
                     <div class="item-regua favGenero">
@@ -72,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="cards" id="cardAquarios">
+            <div class="graficos" id="cardsGeneros">
                 <canvas id="myChart"></canvas>
             </div>
 
@@ -105,26 +105,87 @@
             spanPopular.innerHTML = generoPopular;
         }
     }
-    const ctx = document.getElementById('myChart');
+    function atualizarGrafico(generosLivros){
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Ficção Científia', 'Ação', 'Terror', 'Romance', 'Filosofia', 'Literatura'],
-            datasets: [{
-                label: 'Gênero mais popular',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
+        const ctx = document.getElementById('myChart');
+    
+        const labels = Object.keys(generosLivros);
+        const data = Object.values(generosLivros);
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Gênero mais popular',
+                    data: data,
+                    borderWidth: 1,
+                    backgroundColor: [
+                    '#211c33',
+                    '#e68a2e',
+                    '#6d9788',
+                    '#a68c69',
+                    '#e84d5b',
+                    '#2f2f4d',
+                    '#220114',
+                    '#9fd9b3'
+                ],
+                    borderColor: 'black',
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color:'black',
+                            font: {
+                                size: 20
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    x:{
+                        ticks:{
+                            color: ['black'],
+                            font: {
+                                size: 18,
+                            }
+                        }
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks:{
+                            color: ['black'],
+                            font: {
+                                size: 14,
+                            },
+                        },
+                    }
                 }
             }
+        });
+    }
+    function carregarGeneros() {
+    fetch("/avisos/listar").then(resposta => {
+        if (resposta.ok) {
+            resposta.json().then(data => {
+                const generoContagem = {};
+
+                data.forEach(publicacao => {
+                    const genero = publicacao.genero;
+                    generoContagem[genero] = (generoContagem[genero] || 0) + 1;
+                });
+
+                atualizarGrafico(generoContagem);
+            });
+        } else {
+            console.error("Erro ao carregar os gêneros!");
         }
-    });
+    }).catch(erro => console.error(erro));
+}
+carregarGeneros();
 </script>
 
 </html>

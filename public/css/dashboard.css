@@ -125,7 +125,8 @@ body {
   position: relative;
   top: 0;
   left: 20%;
-  background-color: #655f5f;
+  color: black;
+  background-color: #45936c;
   height: 100vh;
   overflow: auto;
 }
@@ -138,7 +139,13 @@ body {
   justify-content: center;
   background-color: antiquewhite;
 }
-
+.graficos{
+  width: 100%;
+  margin: auto;
+}
+#myChart{
+  color: black;
+}
 .area-parametros-alerta {
   /* border: 2px solid pink; */
   display: flex;
