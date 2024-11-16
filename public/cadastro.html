@@ -36,7 +36,7 @@
           <input type="text" id="ipt_CPF" placeholder="123.456.789-12" maxlength="11">
         </div>
         <div class="campo">
-          <span>Qual seu gênero favorito?</span>
+          <span>Qual seu gênero de livro favorito?</span>
           <select name="" id="slt_genero">
             <option value="#" selected disabled>Selecione uma opção</option>
             <option value="Ficção Científica">Ficção Científica</option>
@@ -60,7 +60,7 @@
         <div class="conta">
           <button onclick="cadastrar()">Cadastrar-se</button>
           <a href="login.html">Já possuí conta?</a>
-          <div id="div_erros_login"></div>
+          <div id="div_mensagem"></div>
         </div>
       </div>
     </div>
@@ -83,102 +83,143 @@
     var senhaVar = ipt_senha.value;
     var confirmacaoSenhaVar = ipt_confirmarSenha.value;
 
-    var caracteresEspeciais = ['!', '@', '#', '$', '%', '&', '*']
-    var numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    var tamanho_senha = senhaVar.length;
 
-    div_erros_login.innerHTML = ''
+    var mensagem = "";
+    var verifica_num_tmp;
+
+    var emailVálido = false;
+    var senhaVálida = true;
+    var senhaConfirmadaVálida = false;
+
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||
       emailVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == "" ||
       cpfVar == "" ||
-      generoVar == "#"
+      generoVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == ""
     ) {
-      div_erros_login.innerHTML =
+      div_mensagem.innerHTML =
         "Preencha todos os campos para prosseguir";
 
       return false;
     }
 
-    if (!emailVar.includes('@') || !emailVar.includes('.')) {
-      div_erros_login.innerHTML += 'Email não contém @ ou .';
-      return false;
+    div_mensagem.innerHTML = "";
+    if (emailVar.includes('.') && emailVar.includes('@')) {
+      if (!(emailVar.indexOf('.') == (emailVar.indexOf('@') + 1))) {
+        div_mensagem.innerHTML += `<span style='color:green'>E-mail válido</span> <br>`;
+        emailVálido = true;
+      }
     } else {
-      div_erros_login.innerHTML += 'Email contém @ ou .';
-      return true;
+      div_mensagem.innerHTML += `<span style='color:red'>E-mail inválido</span> <br>`
     }
 
-    if (senhaVar.length < 6) {
-      div_erros_login.innerHTML = 'Quantidade de caracteres insuficiente na senha';
-      return false;
-    }
+    if (senhaVar.toUpperCase() == senhaVar && senhaVar.toLowerCase() == senhaVar) {
+      div_mensagem.innerHTML += `<span style='color:red'>Senha não possui letras</span><br>`;
 
-    if (senhaVar.toLowerCase() == senhaVar) {
-        div_erros_login.innerHTML += `<span style='color:red'>Senha não possui caracteres maiúsculos</span><br>`;
-        return false;
+    } else {
+
+      if (senhaVar.toLowerCase() == senhaVar) {
+        div_mensagem.innerHTML += `<span style='color:red'>Senha não possui caracteres maiúsculos</span><br>`;
+        senhaVálida = false;
       } else {
-        div_erros_login.innerHTML += `<span style='color:green'>Senha possui caracteres maiúsculos</span><br>`;
-        return true;
+        div_mensagem.innerHTML += `<span style='color:green'>Senha possui caracteres maiúsculos</span><br>`;
+        senhaVálida = true;
       }
 
       if (senhaVar.toUpperCase() == senhaVar) {
-        div_erros_login.innerHTML += `<span style='color:red'>Senha não possui caracteres minúsculos</span><br> `;
-        return false;
+        div_mensagem.innerHTML += `<span style='color:red'>Senha não possui caracteres minúsculos</span><br> `;
+        senhaVálida = false;
       } else {
-        div_erros_login.innerHTML += `<span style='color:green'>Senha possui caracteres minúsculos</span><br> `;
-        return true;
+        div_mensagem.innerHTML += `<span style='color:green'>Senha possui caracteres minúsculos</span><br> `;
+        senhaVálida = true;
+      }
+    }
+
+    if (tamanho_senha < 8) {
+      div_mensagem.innerHTML += `<span style='color:red'>Senha não possui menos de 8 caracteres</span><br>`;
+      senhaVálida = false;
+    } else {
+      div_mensagem.innerHTML += `<span style='color:green'>Senha possui pelo menos 8 caracteres</span><br>`;
+      senhaVálida = true;
+    }
+
+    for (var i = 0; i < tamanho_senha; i++) {
+      verifica_num_tmp = Number(senhaVar[i]);
+      if (!isNaN(verifica_num_tmp)) {
+        mensagem = "<span style='color:green'>Senha possui números</span>";
+        i = tamanho_senha;
+      } else {
+        mensagem = `<span style='color:red'>Senha não possui números</span><br>`;
+        senhaVálida = false;
       }
 
-    if (senhaVar != confirmacaoSenhaVar) {
-      div_erros_login.innerHTML += 'A senha é diferente!'
-      return false;
-    } else {
-      div_erros_login.innerHTML += 'A senha é igual';
-      return true;
-    }
-    if(senhaVar.includes('!') || senhaVar.includes('@' )){
-      div_erros_login.innerHTML += 'A senha contém caractere especial e números'
-      return true;
-    } else {
-      div_erros_login.innerHTML += 'A senha não contém caractere especial e números'
-      return false;
     }
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        cpfServer: cpfVar,
-        generoServer: generoVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+    if (senhaVar.includes('!') || senhaVar.includes('"') || senhaVar.includes('#') || senhaVar.includes('$') ||
+      senhaVar.includes('%') || senhaVar.includes('&') || senhaVar.includes("'") || senhaVar.includes('(') || senhaVar.includes(')')
+      || senhaVar.includes('*') || senhaVar.includes('+') || senhaVar.includes(',') || senhaVar.includes('-') || senhaVar.includes('.')
+      || senhaVar.includes('/') || senhaVar.includes(':') || senhaVar.includes(';') || senhaVar.includes('<') || senhaVar.includes('<')
+      || senhaVar.includes('=') || senhaVar.includes('>') || senhaVar.includes('?') || senhaVar.includes('@') || senhaVar.includes('[')
+      || senhaVar.includes('\\') || senhaVar.includes(']') || senhaVar.includes('^') || senhaVar.includes('_') || senhaVar.includes('`')
+      || senhaVar.includes('`') || senhaVar.includes('{') || senhaVar.includes('|') || senhaVar.includes('}') || senhaVar.includes('~')
+    ) {
+      div_mensagem.innerHTML += `<span style='color:green'>Senha contém cararactere especial</span><br>`;
+      senhaVálida = true;
+    } else {
+      div_mensagem.innerHTML += `<span style="color:red">Senha não contém cararactere especial</span><br>`;
+      senhaVálida = false;
+    }
 
-        if (resposta.ok) {
-          window.location = "./login.html";
+    if (senhaVar == confirmacaoSenhaVar) {
+      mensagem = `<span style='color:green'>A senha é igual</span>`;
+      senhaConfirmadaVálida = true;
+    } else {
+      mensagem = `<span style='color:red'>A senha é diferente</span>`;
+    }
 
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
+    if(emailVálido && senhaVálida && senhaConfirmadaVálida){
+
+      // Enviando o valor da nova input
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // crie um atributo que recebe o valor recuperado aqui
+          // Agora vá para o arquivo routes/usuario.js
+          nomeServer: nomeVar,
+          cpfServer: cpfVar,
+          generoServer: generoVar,
+          emailServer: emailVar,
+          senhaServer: senhaVar,
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
+  
+          if (resposta.ok) {
+            div_mensagem.innerHTML =
+              "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
-    return false;
+            window.location = "./login.html";
+  
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+  
+      return false;
+    }
   }
 </script>
