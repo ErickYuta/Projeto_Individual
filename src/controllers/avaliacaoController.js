@@ -1,7 +1,7 @@
-var avisoModel = require("../models/avisoModel");
+var avaliacaoModel = require("../models/avaliacaoModel");
 
 function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+    avaliacaoModel.listar().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -17,7 +17,7 @@ function listar(req, res) {
 function listarPorUsuario(req, res) {
     var idUsuario = req.params.idUsuario;
 
-    avisoModel.listarPorUsuario(idUsuario)
+    avaliacaoModel.listarPorUsuario(idUsuario)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -42,7 +42,7 @@ function listarPorUsuario(req, res) {
 function pesquisarDescricao(req, res) {
     var descricao = req.params.descricao;
 
-    avisoModel.pesquisarDescricao(descricao)
+    avaliacaoModel.pesquisarDescricao(descricao)
         .then(
             function (resultado) {
                 if (resultado.length > 0) {
@@ -74,7 +74,7 @@ function publicar(req, res) {
     } else if (fkUsuario == undefined) {
         res.status(403).send("O id do usuário está indefinido!");
     } else {
-        avisoModel.publicar(titulo,genero, descricao, nota, fkUsuario)
+        avaliacaoModel.publicar(titulo,genero, descricao, nota, fkUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -94,7 +94,7 @@ function editar(req, res) {
     var novaDescricao = req.body.descricao;
     var idAviso = req.params.idAviso;
 
-    avisoModel.editar(novaDescricao, idAviso)
+    avaliacaoModel.editar(novaDescricao, idAviso)
         .then(
             function (resultado) {
                 res.json(resultado);
@@ -113,7 +113,7 @@ function editar(req, res) {
 function deletar(req, res) {
     var idAviso = req.params.idAviso;
 
-    avisoModel.deletar(idAviso)
+    avaliacaoModel.deletar(idAviso)
         .then(
             function (resultado) {
                 res.json(resultado);
