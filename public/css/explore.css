@@ -123,7 +123,7 @@ body {
 .main-content{
     background-color: #fff;
     width: 70%;
-    height: 850vh;
+    height: 800vh;
     display: flex;
     flex-direction: column;
 }

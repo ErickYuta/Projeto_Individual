@@ -70,7 +70,7 @@
                             <label>
                                 Gênero do Livro:
                                 <br>
-                                <select name="genero" id="slt_genero">
+                                <select name="genero" id="slt_genero" required>
                                     <option value="#" selected disabled>Selecione uma opção</option>
                                     <option value="Ficção Científica">Ficção Científica</option>
                                     <option value="Ação">Ação</option>
@@ -88,7 +88,7 @@
                                 Descrição (máximo de 250 caracteres):
                                 <br>
                                 <textarea name="descricao" id="textarea_descricao"
-                                    placeholder="Breve descrição sobre o livro..." maxlength="250" rows="5"></textarea>
+                                    placeholder="Breve descrição sobre o livro..." maxlength="250" rows="5" required></textarea>
                             </label>
                             <br>
                             <br>
@@ -96,7 +96,7 @@
                                 Nota:
                                 <br>
                                 <input type="number" id="nota" name="nota" placeholder="Nota de 0-10 sobre o livro"
-                                    min="0" max="10">
+                                    min="0" max="10" required>
                             </label>
                             <button>Enviar</button>
                             <h1 style="text-align: center;">Avaliações</h1>
@@ -147,7 +147,7 @@
 
             if (resposta.ok) {
                 window.alert("Publicação realizado com sucesso pelo usuario: " + nome);
-                window.location = "/dashboard/mural.html";
+                window.location = "/dashboard/avaliacao.html";
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
@@ -180,7 +180,7 @@
 
             if (resposta.ok) {
                 window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
+                window.location = "/dashboard/avaliacao.html"
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");
             } else {
