@@ -22,7 +22,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exbirAvaliacoes(), exibirGeneroPopular(), atualizarGrafico(), exibirAvaliacoesGeneroPopular()">
+<body onload="validarSessao(), exibirAvaliacoes(), exibirGeneroPopular(), atualizarGrafico(), exibirGeneroMenosPopular()">
 
     <div class="janela">
 
@@ -63,11 +63,11 @@
                     </div>
                     <div class="item-regua popGenero">
                         <p>Gênero mais popular</p>
-                        <span id="generoPopular"></span>
+                        <span id="generoPopular">Nenhum gênero em alta</span>
                     </div>
                     <div class="item-regua menosPopGenero">
                         <p>Gênero menos popular</p>
-                        <span id="generoMenosPopular"></span>
+                        <span id="generoMenosPopular">Nenhum gênero em baixa</span>
                     </div>
                     <div class="item-regua qtdAvaliacao">
                         <p>Quantidade de avaliações</p>
@@ -89,46 +89,50 @@
 
 <script>
     b_genero.innerHTML = sessionStorage.GENERO_USUARIO;
-    avaliacoes.innerHTML = sessionStorage.getItem("qtd_Avaliacoes");
-    generoMenosPopular.innerHTML = sessionStorage.getItem("genero_menosPopular");
 
-    function exbirAvaliacoes() {
-        const qtdAvaliacoes = sessionStorage.getItem("qtd_Avaliacoes");
-        const spanQtdAvaliacoes = document.getElementById("avaliacoes");
-        if(qtdAvaliacoes == null){
-            spanQtdAvaliacoes.innerHTML = "0";
-        } else {
-            spanQtdAvaliacoes.innerHTML = qtdAvaliacoes;
+    async function exibirAvaliacoes(){
+        try {
+            const response = await fetch('/avaliacao/exibirQtdAvaliacoes');
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+                const avaliacao = data[0];
+                const spanQtdAvaliacoes = document.getElementById('avaliacoes');
+
+                spanQtdAvaliacoes.innerHTML = avaliacao.quantidade;
+            }
+        } catch (error) {
+            console.error('Erro ao carregar personagem mais votado:', error);
         }
     }
-    function exibirGeneroMenosPopular(){
-        const generoMenosPopular = sessionStorage.getItem("genero_menosPopular");
-        const spanMenosPopular = document.getElementById("generoMenosPopular")
-        if(generoMenosPopular == null){
-            spanMenosPopular.innerHTML = "Nenhum gênero em baixa";
-        } else {
-            spanMenosPopular.innerHTML = generoMenosPopular;
+    async function exibirGeneroPopular(){
+        try {
+            const response = await fetch('/avaliacao/exibirGeneroPopular');
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+                const avaliacao = data[0];
+                const spanGeneroPopular = document.getElementById('generoPopular');
+
+                spanGeneroPopular.innerHTML = avaliacao.genero;
+            }
+        } catch (error) {
+            console.error('Erro ao carregar avaliacao:', error);
         }
     }
-    function exibirGeneroPopular(){
-        const generoPopular = sessionStorage.getItem("genero_popular");
-        const spanPopular = document.getElementById("generoPopular")
-        if(generoPopular == null){
-            spanPopular.innerHTML = "Nenhum gênero em alta";
-        } else {
-            spanPopular.innerHTML = generoPopular;
-        }
-    }
-    function exibirAvaliacoesGeneroPopular(){
-        const generoPopular = sessionStorage.getItem("genero_popular");
-        const qtdAvaliacoesGeneroPopular = sessionStorage.getItem("qtd_avaliacoes_generoPopular");
-        if(generoPopular == null || qtdAvaliacoesGeneroPopular == null){
-            return;
-        } else {
-            alerta.innerHTML = `
-                <h3>Gênero mais popular: <b>${generoPopular}</b></h3>
-                <p>Quantidade de avaliações do gênero mais popular: <b>${qtdAvaliacoesGenero}</b></p>
-            `;
+    async function exibirGeneroMenosPopular(){
+        try {
+            const response = await fetch('/avaliacao/exibirGeneroMenosPopular');
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+                const avaliacao = data[0];
+                const spanGeneroMenosPopular = document.getElementById('generoMenosPopular');
+
+                spanGeneroMenosPopular.innerHTML = avaliacao.genero;
+            }
+        } catch (error) {
+            console.error('Erro ao carregar avaliacao:', error);
         }
     }
     function atualizarGrafico(generosLivros){
@@ -194,7 +198,7 @@
         });
     }
     function carregarGeneros() {
-    fetch("/avisos/listar").then(resposta => {
+    fetch("/avaliacao/listar").then(resposta => {
         if (resposta.ok) {
             resposta.json().then(data => {
                 const generoContagem = {};
@@ -212,6 +216,7 @@
     }).catch(erro => console.error(erro));
 }
 carregarGeneros();
+exibirGeneroMenosPopular();
 </script>
 
 </html>

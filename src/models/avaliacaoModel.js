@@ -95,11 +95,35 @@ function deletar(idAviso) {
     return database.executar(instrucaoSql);
 }
 
+function exibirGeneroPopular(){
+    var instrucaoSql = 
+    `
+    SELECT genero,COUNT(genero) FROM avaliacao GROUP BY genero ORDER BY COUNT(genero) DESC LIMIT 1;
+    `
+    return database.executar(instrucaoSql)
+}
+function exibirGeneroMenosPopular(){
+    var instrucaoSql = 
+    `
+    SELECT genero,COUNT(genero) FROM avaliacao GROUP BY genero ORDER BY COUNT(genero) LIMIT 1;
+    `
+    return database.executar(instrucaoSql)
+}
+function exibirQtdAvaliacoes(){
+    var instrucaoSql = 
+    `
+    SELECT COUNT(id) as quantidade FROM avaliacao;    
+    `
+    return database.executar(instrucaoSql)
+}
 module.exports = {
     listar,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
     editar,
-    deletar
+    deletar,
+    exibirGeneroMenosPopular,
+    exibirGeneroPopular,
+    exibirQtdAvaliacoes
 }

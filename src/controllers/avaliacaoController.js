@@ -127,6 +127,46 @@ function deletar(req, res) {
             }
         );
 }
+function exibirGeneroPopular(req, res) {
+    avaliacaoModel.exibirGeneroPopular().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function exibirGeneroMenosPopular(req, res) {
+    avaliacaoModel.exibirGeneroMenosPopular().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function exibirQtdAvaliacoes(req, res) {
+    avaliacaoModel.exibirQtdAvaliacoes().then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os avisos: ", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 module.exports = {
     listar,
@@ -134,5 +174,8 @@ module.exports = {
     pesquisarDescricao,
     publicar,
     editar,
-    deletar
+    deletar,
+    exibirGeneroMenosPopular,
+    exibirGeneroPopular,
+    exibirQtdAvaliacoes
 }
