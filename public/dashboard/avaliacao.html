@@ -204,52 +204,6 @@
 
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    // Capturar a quantidade de avaliações feitas para cada usuário e armazenar no storage para ir na dashboard
-                    const qtdAvaliacoes = resposta.length;
-
-                    // passo em cada gênero e armazeno eles se forem iguais se não adiciono 1 como se fosse novo
-                    const generoContagem = [];
-                    resposta.forEach(publicacao => {
-
-                        const genero = publicacao.genero;
-                        if (generoContagem[genero]) {
-                            generoContagem[genero]++;
-                        } else {
-                            generoContagem[genero] = 1;
-                        }
-                    });
-
-                    // Verificar qual é o gênero mais comum dentro do loop, e setar ele na variável
-                    // for que iterage por todo o array 
-                    var generoPopular = '';
-                    var qtdGeneroPopular = 0;
-                    for (const genero in generoContagem) {
-                        const contagem = generoContagem[genero];
-                        if (contagem > qtdGeneroPopular) {
-                            qtdGeneroPopular = contagem;
-                            generoPopular = genero;
-                        }
-                    }
-
-                    // Verificar qual é o gênero menos em comum dentro do loop, e setar ele na variável
-                    // for que iterage por todo o array 
-                    var generoMenosPopular = '';
-                    var qtdMenosPopular = null;
-                    for (const genero in generoContagem) {
-                        const contagem = generoContagem[genero];
-
-                        if (qtdMenosPopular == null || contagem < qtdMenosPopular) {
-                            qtdMenosPopular = contagem;
-                            generoMenosPopular = genero;
-                        }
-                    }
-                    sessionStorage.setItem("genero_popular", generoPopular);
-                    sessionStorage.setItem("genero_menosPopular", generoMenosPopular)
-                    sessionStorage.setItem("qtd_avaliacoes_generoPopular", qtdGeneroPopular);
-                    sessionStorage.setItem("qtd_Avaliacoes", qtdAvaliacoes);
-
-
                     var feed = document.getElementById("feed_container");
                     feed.innerHTML = "";
 

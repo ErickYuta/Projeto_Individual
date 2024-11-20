@@ -19,12 +19,8 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), listarInfosDeUm()" style="background-color: #161618;">
-    <!-- <body onload="validarSessao()"> -->
-
+<body onload="validarSessao()" style="background-color: #161618;">
     <div class="janela">
-
-
         <div class="header-left">
             <img src="../assets/icon/library.png" alt="" style="height: 10%;">
             <h1>Livros</h1>
@@ -74,10 +70,6 @@
 </html>
 
 <script>
-    function listarInfosDeUm() {
-        console.log("Criar função de trazer informações de post escolhido");
-    }
-
     function editar() {
         fetch(`/avisos/editar/${sessionStorage.getItem("ID_POSTAGEM_EDITANDO")}`, {
             method: "PUT",
