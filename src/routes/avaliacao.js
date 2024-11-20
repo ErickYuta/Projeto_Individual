@@ -17,6 +17,10 @@ router.get("/exibirQtdAvaliacoes", function (req, res) {
     avaliacaoController.exibirQtdAvaliacoes(req, res);
 });
 
+router.get("/exibirMediaNotas", function (req, res) {
+    avaliacaoController.exibirMediaNotas(req, res);
+});
+
 router.get("/listar/:idUsuario", function (req, res) {
     avaliacaoController.listarPorUsuario(req, res);
 });

@@ -73,6 +73,10 @@
                         <p>Quantidade de avaliações</p>
                         <span id="avaliacoes">0</span>
                     </div>
+                    <div class="item-regua media">
+                        <p>Média Geral:</p>
+                        <span id="media">0</span>
+                    </div>
                 </div>
             </div>
 
@@ -133,6 +137,21 @@
             }
         } catch (error) {
             console.error('Erro ao carregar avaliacao:', error);
+        }
+    }
+    async function exibirMediaNotas(){
+        try {
+            const response = await fetch('/avaliacao/exibirMediaNotas');
+            const data = await response.json();
+
+            if (data && data.length > 0) {
+                const avaliacao = data[0];
+                const spanMediaNotas = document.getElementById('media');
+
+                spanMediaNotas.innerHTML = avaliacao.media;
+            }
+        } catch (error) {
+            console.error('Erro ao carregar média de notas:', error);
         }
     }
     function atualizarGrafico(generosLivros){
@@ -217,6 +236,7 @@
 }
 carregarGeneros();
 exibirGeneroMenosPopular();
+exibirMediaNotas();
 </script>
 
 </html>

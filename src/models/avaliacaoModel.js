@@ -116,6 +116,13 @@ function exibirQtdAvaliacoes(){
     `
     return database.executar(instrucaoSql)
 }
+function exibirMediaNotas(){
+    var instrucaoSql = 
+    `
+    SELECT TRUNCATE(AVG(nota),1) as media FROM avaliacao;    
+    `
+    return database.executar(instrucaoSql)
+}
 module.exports = {
     listar,
     listarPorUsuario,
@@ -125,5 +132,6 @@ module.exports = {
     deletar,
     exibirGeneroMenosPopular,
     exibirGeneroPopular,
-    exibirQtdAvaliacoes
+    exibirQtdAvaliacoes,
+    exibirMediaNotas
 }
