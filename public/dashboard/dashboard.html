@@ -22,7 +22,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), exibirAvaliacoes(), exibirGeneroPopular(), atualizarGrafico(), exibirGeneroMenosPopular()">
+<body onload="validarSessao(), exibirAvaliacoes(), exibirGeneroPopular(), exibirGeneroMenosPopular()">
 
     <div class="janela">
 
@@ -92,70 +92,66 @@
 </body>
 
 <script>
-    async function exibirAvaliacoes(){
-        try {
-            const response = await fetch('/avaliacao/exibirQtdAvaliacoes');
-            const data = await response.json();
+    
+    function exibirAvaliacoes() {
+        fetch('/avaliacao/exibirQtdAvaliacoes').then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(data => {
+                    const avaliacao = data[0];
+                    const spanExibirAvaliacoes = document.getElementById('avaliacoes');
 
-            if (data && data.length > 0) {
-                const avaliacao = data[0];
-                const spanQtdAvaliacoes = document.getElementById('avaliacoes');
-
-                spanQtdAvaliacoes.innerHTML = avaliacao.quantidade;
+                    spanExibirAvaliacoes.innerHTML = avaliacao.quantidade;});
+            } else {
+                console.error("Erro ao carregar os gêneros!");
             }
-        } catch (error) {
-            console.error('Erro ao carregar personagem mais votado:', error);
-        }
+        }).catch(erro => console.error(erro));
     }
-    async function exibirGeneroPopular(){
-        try {
-            const response = await fetch('/avaliacao/exibirGeneroPopular');
-            const data = await response.json();
+    function exibirGeneroPopular() {
+        fetch('/avaliacao/exibirGeneroPopular').then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(data => {
+                    const avaliacao = data[0];
+                    const spanGeneroPopular = document.getElementById('generoPopular');
 
-            if (data && data.length > 0) {
-                const avaliacao = data[0];
-                const spanGeneroPopular = document.getElementById('generoPopular');
-
-                spanGeneroPopular.innerHTML = avaliacao.genero;
+                    spanGeneroPopular.innerHTML = avaliacao.genero;});
+            } else {
+                console.error("Erro ao carregar os gêneros!");
             }
-        } catch (error) {
-            console.error('Erro ao carregar avaliacao:', error);
-        }
+        }).catch(erro => console.error(erro));
     }
-    async function exibirGeneroMenosPopular(){
-        try {
-            const response = await fetch('/avaliacao/exibirGeneroMenosPopular');
-            const data = await response.json();
+    
+    function exibirGeneroMenosPopular() {
+        fetch('/avaliacao/exibirGeneroMenosPopular').then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(data => {
+                    const avaliacao = data[0];
+                    const spanGeneroMenosPopular = document.getElementById('generoMenosPopular');
 
-            if (data && data.length > 0) {
-                const avaliacao = data[0];
-                const spanGeneroMenosPopular = document.getElementById('generoMenosPopular');
-
-                spanGeneroMenosPopular.innerHTML = avaliacao.genero;
+                    spanGeneroMenosPopular.innerHTML = avaliacao.genero;});
+            } else {
+                console.error("Erro ao carregar os gêneros!");
             }
-        } catch (error) {
-            console.error('Erro ao carregar avaliacao:', error);
-        }
+        }).catch(erro => console.error(erro));
     }
-    async function exibirMediaNotas(){
-        try {
-            const response = await fetch('/avaliacao/exibirMediaNotas');
-            const data = await response.json();
 
-            if (data && data.length > 0) {
-                const avaliacao = data[0];
-                const spanMediaNotas = document.getElementById('media');
+    function exibirMediaNotas() {
+        fetch('/avaliacao/exibirMediaNotas').then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(data => {
+                    const avaliacao = data[0];
+                    const spanMediaNotas = document.getElementById('media');
 
-                spanMediaNotas.innerHTML = avaliacao.media;
+                    spanMediaNotas.innerHTML = avaliacao.media;});
+            } else {
+                console.error("Erro ao carregar os gêneros!");
             }
-        } catch (error) {
-            console.error('Erro ao carregar média de notas:', error);
-        }
+        }).catch(erro => console.error(erro));
     }
-    function atualizarGrafico(generosLivros){
+    // ENTENDER ESSA PARTE
+    function atualizarGrafico(generosLivros) {
 
         const ctx = document.getElementById('myChart');
-    
+
         const labels = Object.keys(generosLivros);
         const data = Object.values(generosLivros);
 
@@ -168,15 +164,15 @@
                     data: data,
                     borderWidth: 1,
                     backgroundColor: [
-                    '#211c33',
-                    '#e68a2e',
-                    '#6d9788',
-                    '#a68c69',
-                    '#e84d5b',
-                    '#2f2f4d',
-                    '#220114',
-                    '#9fd9b3'
-                ],
+                        '#211c33',
+                        '#e68a2e',
+                        '#6d9788',
+                        '#a68c69',
+                        '#e84d5b',
+                        '#2f2f4d',
+                        '#220114',
+                        '#9fd9b3'
+                    ],
                     borderColor: 'black',
                 }]
             },
@@ -185,16 +181,16 @@
                 plugins: {
                     legend: {
                         labels: {
-                            color:'black',
+                            color: 'black',
                             font: {
-                                size:20
+                                size: 20
                             }
                         }
                     }
                 },
                 scales: {
-                    x:{
-                        ticks:{
+                    x: {
+                        ticks: {
                             color: ['black'],
                             font: {
                                 size: 18,
@@ -203,7 +199,7 @@
                     },
                     y: {
                         beginAtZero: true,
-                        ticks:{
+                        ticks: {
                             color: ['black'],
                             font: {
                                 size: 14,
@@ -215,26 +211,26 @@
         });
     }
     function carregarGeneros() {
-    fetch("/avaliacao/listar").then(resposta => {
-        if (resposta.ok) {
-            resposta.json().then(data => {
-                const generoContagem = {};
+        fetch("/avaliacao/listar").then(resposta => {
+            if (resposta.ok) {
+                resposta.json().then(data => {
+                    const generoContagem = {};
 
-                data.forEach(publicacao => {
-                    const genero = publicacao.genero;
-                    generoContagem[genero] = (generoContagem[genero] || 0) + 1;
+                    data.forEach(publicacao => {
+                        const genero = publicacao.genero;
+                        generoContagem[genero] = (generoContagem[genero] || 0) + 1;
+                    });
+
+                    atualizarGrafico(generoContagem);
                 });
-
-                atualizarGrafico(generoContagem);
-            });
-        } else {
-            console.error("Erro ao carregar os gêneros!");
-        }
-    }).catch(erro => console.error(erro));
-}
-carregarGeneros();
-exibirGeneroMenosPopular();
-exibirMediaNotas();
+            } else {
+                console.error("Erro ao carregar os gêneros!");
+            }
+        }).catch(erro => console.error(erro));
+    }
+    carregarGeneros();
+    exibirGeneroMenosPopular();
+    exibirMediaNotas();
 </script>
 
 </html>
