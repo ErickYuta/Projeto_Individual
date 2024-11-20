@@ -143,85 +143,87 @@
 
                     spanMediaNotas.innerHTML = avaliacao.media;});
             } else {
-                console.error("Erro ao carregar os gêneros!");
+                console.error("Erro ao carregar a média de notas!");
             }
         }).catch(erro => console.error(erro));
     }
-    // ENTENDER ESSA PARTE
-    function atualizarGrafico(generosLivros) {
+    function atualizarGrafico( labels, valores ) {
+    const ctx = document.getElementById('myChart');
 
-        const ctx = document.getElementById('myChart');
-
-        const labels = Object.keys(generosLivros);
-        const data = Object.values(generosLivros);
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Quantidade de Avaliações',
-                    data: data,
-                    borderWidth: 1,
-                    backgroundColor: [
-                        '#211c33',
-                        '#e68a2e',
-                        '#6d9788',
-                        '#a68c69',
-                        '#e84d5b',
-                        '#2f2f4d',
-                        '#220114',
-                        '#9fd9b3'
-                    ],
-                    borderColor: 'black',
-                }]
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Quantidade de Avaliações',
+                data: valores,
+                borderWidth: 1,
+                backgroundColor: [
+                    '#211c33', '#e68a2e', '#6d9788',
+                    '#a68c69', '#e84d5b', '#2f2f4d',
+                    '#220114', '#9fd9b3'
+                ],
+                borderColor: 'black',
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    labels: {
+                        color: 'black',
+                        font: {
+                            size: 20
+                        }
+                    }
+                }
             },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        labels: {
-                            color: 'black',
-                            font: {
-                                size: 20
-                            }
+            scales: {
+                x: {
+                    ticks: {
+                        color: ['black'],
+                        font: {
+                            size: 18,
                         }
                     }
                 },
-                scales: {
-                    x: {
-                        ticks: {
-                            color: ['black'],
-                            font: {
-                                size: 18,
-                            }
-                        }
-                    },
-                    y: {
-                        beginAtZero: true,
-                        ticks: {
-                            color: ['black'],
-                            font: {
-                                size: 14,
-                            },
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: ['black'],
+                        font: {
+                            size: 14,
                         },
-                    }
+                    },
                 }
             }
-        });
-    }
+        }
+    });
+}
+
     function carregarGeneros() {
         fetch("/avaliacao/listar").then(resposta => {
             if (resposta.ok) {
                 resposta.json().then(data => {
-                    const generoContagem = {};
 
+                    const labels = [];
+                    const valores = [];
+
+                    // Itero por todos os dados 
                     data.forEach(publicacao => {
                         const genero = publicacao.genero;
-                        generoContagem[genero] = (generoContagem[genero] || 0) + 1;
+                        const generoContagem = labels.indexOf(genero);
+
+                            // verifico se já possui valor, se possui eu adiciono, se não adiciono 1 
+                            if(generoContagem != -1){
+                                valores[generoContagem] += 1;
+                            } else {
+                                labels.push(genero);
+                                valores.push(1);
+                            }
                     });
 
-                    atualizarGrafico(generoContagem);
+                    atualizarGrafico(labels, valores);
                 });
             } else {
                 console.error("Erro ao carregar os gêneros!");
