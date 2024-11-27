@@ -92,7 +92,7 @@
 </body>
 
 <script>
-    
+
     function exibirAvaliacoes() {
         fetch('/avaliacao/exibirQtdAvaliacoes').then(resposta => {
             if (resposta.ok) {
@@ -100,7 +100,8 @@
                     const avaliacao = data[0];
                     const spanExibirAvaliacoes = document.getElementById('avaliacoes');
 
-                    spanExibirAvaliacoes.innerHTML = avaliacao.quantidade;});
+                    spanExibirAvaliacoes.innerHTML = avaliacao.quantidade;
+                });
             } else {
                 console.error("Erro ao carregar os gêneros!");
             }
@@ -113,13 +114,14 @@
                     const avaliacao = data[0];
                     const spanGeneroPopular = document.getElementById('generoPopular');
 
-                    spanGeneroPopular.innerHTML = avaliacao.genero;});
+                    spanGeneroPopular.innerHTML = avaliacao.genero;
+                });
             } else {
                 console.error("Erro ao carregar os gêneros!");
             }
         }).catch(erro => console.error(erro));
     }
-    
+
     function exibirGeneroMenosPopular() {
         fetch('/avaliacao/exibirGeneroMenosPopular').then(resposta => {
             if (resposta.ok) {
@@ -127,7 +129,8 @@
                     const avaliacao = data[0];
                     const spanGeneroMenosPopular = document.getElementById('generoMenosPopular');
 
-                    spanGeneroMenosPopular.innerHTML = avaliacao.genero;});
+                    spanGeneroMenosPopular.innerHTML = avaliacao.genero;
+                });
             } else {
                 console.error("Erro ao carregar os gêneros!");
             }
@@ -141,67 +144,69 @@
                     const avaliacao = data[0];
                     const spanMediaNotas = document.getElementById('media');
 
-                    spanMediaNotas.innerHTML = avaliacao.media;});
+                    spanMediaNotas.innerHTML = avaliacao.media;
+                });
             } else {
                 console.error("Erro ao carregar a média de notas!");
             }
         }).catch(erro => console.error(erro));
     }
-    function atualizarGrafico( labels, valores ) {
-    const ctx = document.getElementById('myChart');
 
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: labels,
-            datasets: [{
-                label: 'Quantidade de Avaliações',
-                data: valores,
-                borderWidth: 1,
-                backgroundColor: [
-                    '#211c33', '#e68a2e', '#6d9788',
-                    '#a68c69', '#e84d5b', '#2f2f4d',
-                    '#220114', '#9fd9b3'
-                ],
-                borderColor: 'black',
-            }]
-        },
-        options: {
-            responsive: true,
-            plugins: {
-                legend: {
-                    labels: {
-                        color: 'black',
-                        font: {
-                            size: 20
-                        }
-                    }
-                }
+    function criarGrafico(labels, valores) {
+        const ctx = document.getElementById('myChart');
+
+        new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Quantidade de Avaliações',
+                    data: valores,
+                    borderWidth: 1,
+                    backgroundColor: [
+                        '#211c33', '#e68a2e', '#6d9788',
+                        '#a68c69', '#e84d5b', '#2f2f4d',
+                        '#220114', '#9fd9b3'
+                    ],
+                    borderColor: 'black',
+                }]
             },
-            scales: {
-                x: {
-                    ticks: {
-                        color: ['black'],
-                        font: {
-                            size: 18,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'black',
+                            font: {
+                                size: 20
+                            }
                         }
                     }
                 },
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: ['black'],
-                        font: {
-                            size: 14,
-                        },
+                scales: {
+                    x: {
+                        ticks: {
+                            color: ['black'],
+                            font: {
+                                size: 18,
+                            }
+                        }
                     },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            color: ['black'],
+                            font: {
+                                size: 14,
+                            },
+                        },
+                    }
                 }
             }
-        }
-    });
-}
+        });
+    }
 
-    function carregarGeneros() {
+    function atualizarGrafico() {
         fetch("/avaliacao/listar").then(resposta => {
             if (resposta.ok) {
                 resposta.json().then(data => {
@@ -209,28 +214,30 @@
                     const labels = [];
                     const valores = [];
 
-                    // Itero por todos os dados 
-                    data.forEach(publicacao => {
-                        const genero = publicacao.genero;
+                    for (let i = 0; i < data.length; i++) {
+
+                        const genero = data[i].genero;
+
+                        // Procura a posição do gênero que percorreu pelo loop
                         const generoContagem = labels.indexOf(genero);
 
-                            // verifico se já possui valor, se possui eu adiciono, se não adiciono 1 
-                            if(generoContagem != -1){
-                                valores[generoContagem] += 1;
-                            } else {
-                                labels.push(genero);
-                                valores.push(1);
-                            }
-                    });
+                        // -1 Por que se o indexOf não encontrar o valor desejado, ele retorna -1
+                        if (generoContagem != -1) {
+                            valores[generoContagem] += 1;
+                        } else {
+                            labels.push(genero);
+                            valores.push(1);
+                        }
+                    }
 
-                    atualizarGrafico(labels, valores);
+                    criarGrafico(labels, valores);
                 });
             } else {
                 console.error("Erro ao carregar os gêneros!");
             }
         }).catch(erro => console.error(erro));
     }
-    carregarGeneros();
+    atualizarGrafico();
     exibirGeneroMenosPopular();
     exibirMediaNotas();
 </script>

@@ -22,52 +22,6 @@ function listar() {
     return database.executar(instrucaoSql);
 }
 
-function pesquisarDescricao(texto) {
-    console.log("ACESSEI O AVALIACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisarDescricao()");
-    var instrucaoSql = `
-        SELECT 
-            a.id AS idAvaliacao,
-            a.titulo,
-            a.genero,
-            a.descricao,
-            a.nota,
-            a.fkUsuario,
-            u.id,
-            u.nome,
-            u.email,
-            u.senha
-        FROM avaliacao a
-            INNER JOIN usuario u
-                ON a.fkUsuario = u.id
-        WHERE a.descricao LIKE '${texto}';
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function listarPorUsuario(id) {
-    console.log("ACESSEI O AVALIACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorUsuario()");
-    var instrucaoSql = `
-        SELECT 
-            a.id AS idAvaliacao,
-            a.titulo,
-            a.genero,
-            a.descricao,
-            a.nota,
-            a.fkUsuario,
-            u.id,
-            u.nome,
-            u.email,
-            u.senha
-        FROM avaliacao a
-            INNER JOIN usuario u
-                ON a.fkUsuario = u.id
-        WHERE u.id = ${id};
-    `;
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
 function publicar(titulo, genero,descricao,nota, fkUsuario) {
     console.log("ACESSEI O AVALIACAO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, genero,descricao,nota, fkUsuario);
     var instrucaoSql = `
@@ -98,14 +52,14 @@ function deletar(idAviso) {
 function exibirGeneroPopular(){
     var instrucaoSql = 
     `
-    SELECT genero,COUNT(genero) FROM avaliacao GROUP BY genero ORDER BY COUNT(genero) DESC LIMIT 1;
+    SELECT genero, COUNT(genero) AS quantidade FROM avaliacao GROUP BY genero ORDER BY quantidade DESC LIMIT 1;
     `
     return database.executar(instrucaoSql)
 }
 function exibirGeneroMenosPopular(){
     var instrucaoSql = 
     `
-    SELECT genero,  COUNT(genero) FROM avaliacao GROUP BY genero ORDER BY COUNT(genero) LIMIT 1;
+    SELECT genero, COUNT(genero) AS quantidade FROM avaliacao GROUP BY genero ORDER BY quantidade ASC LIMIT 1;
     `
     return database.executar(instrucaoSql)
 }
@@ -125,8 +79,6 @@ function exibirMediaNotas(){
 }
 module.exports = {
     listar,
-    listarPorUsuario,
-    pesquisarDescricao,
     publicar,
     editar,
     deletar,

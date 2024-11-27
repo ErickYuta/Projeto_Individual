@@ -181,7 +181,7 @@
       mensagem = `<span style='color:red'>A senha é diferente</span>`;
     }
 
-    if(emailVálido && senhaVálida && senhaConfirmadaVálida){
+    if (emailVálido && senhaVálida && senhaConfirmadaVálida) {
 
       // Enviando o valor da nova input
       fetch("/usuarios/cadastrar", {
@@ -201,15 +201,12 @@
       })
         .then(function (resposta) {
           console.log("resposta: ", resposta);
-  
+
           if (resposta.ok) {
             div_mensagem.innerHTML =
               "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
 
             window.location = "./login.html";
-  
-            limparFormulario();
-            finalizarAguardar();
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
           }
@@ -217,7 +214,7 @@
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
         });
-  
+
       return false;
     }
   }

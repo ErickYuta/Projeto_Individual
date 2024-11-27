@@ -21,14 +21,6 @@ router.get("/exibirMediaNotas", function (req, res) {
     avaliacaoController.exibirMediaNotas(req, res);
 });
 
-router.get("/listar/:idUsuario", function (req, res) {
-    avaliacaoController.listarPorUsuario(req, res);
-});
-
-router.get("/pesquisar/:descricao", function (req, res) {
-    avaliacaoController.pesquisarDescricao(req, res);
-});
-
 router.post("/publicar/:idUsuario", function (req, res) {
     avaliacaoController.publicar(req, res);
 });
